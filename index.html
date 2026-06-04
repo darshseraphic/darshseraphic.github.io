@@ -7,30 +7,30 @@
     
     <style>
         /* Core CSS Variable Architecture (Default Light Mode) */
-        :root {
-            --bg-color: #0A0A0A;
-            --text-main: #FFFFFF;
-            --text-muted: #737373;
-            --border-color: #1F1F1F;
-            --card-bg: #0E0E0E;
-            --terminal-bg: #050505;
-            --nav-bg: rgba(10, 10, 10, 0.65);
-            --nav-glow: rgba(255, 255, 255, 0.05);
-        }
+        /* Core CSS Variable Architecture (Default Dark Mode) */
+:root {
+    --bg-color: #0A0A0A;
+    --text-main: #FFFFFF;
+    --text-muted: #737373;
+    --border-color: #1F1F1F;
+    --card-bg: #0E0E0E;
+    --terminal-bg: #050505;
+    --font-stack: "SF Pro Display", "-apple-system", "BlinkMacSystemFont", "SF Pro Text", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif;
+    --nav-bg: rgba(10, 10, 10, 0.65);
+    --nav-glow: rgba(255, 255, 255, 0.05);
+}
 
-        /* Dark Mode Variable Overrides */
-        [data-theme="Light"] {
-
-                        --bg-color: #FAFAFA;
-            --text-main: #171717;
-            --text-muted: #6F6F6F;
-            --border-color: #E5E5E5;
-            --card-bg: #F4F4F5;
-            --terminal-bg: #E4E4E7;
-            --font-stack: "SF Pro Display", "-apple-system", "BlinkMacSystemFont", "SF Pro Text", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif;
-            --nav-bg: rgba(250, 250, 250, 0.65);
-            --nav-glow: rgba(0, 0, 0, 0.03);
-        }
+/* Light Mode Variable Overrides */
+[data-theme="light"] {
+    --bg-color: #FAFAFA;
+    --text-main: #171717;
+    --text-muted: #6F6F6F;
+    --border-color: #E5E5E5;
+    --card-bg: #F4F4F5;
+    --terminal-bg: #E4E4E7;
+    --nav-bg: rgba(250, 250, 250, 0.65);
+    --nav-glow: rgba(0, 0, 0, 0.03);
+}
 
         /* Reset & Base System Setup */
         * {
@@ -144,12 +144,13 @@
         }
 
         /* Default Layout: Show Sun icon, Hide Moon icon */
-        .theme-toggle-btn .sun-icon { display: block; }
-        .theme-toggle-btn .moon-icon { display: none; }
+        /* Default Layout (Dark Mode): Show Moon icon, Hide Sun icon */
+        .theme-toggle-btn .sun-icon { display: none; }
+        .theme-toggle-btn .moon-icon { display: block; }
 
-        /* Dark Mode: Hide Sun icon, Show Moon icon */
-        [data-theme="dark"] .theme-toggle-btn .sun-icon { display: none; }
-        [data-theme="dark"] .theme-toggle-btn .moon-icon { display: block; }
+/* Light Mode Override: Show Sun icon, Hide Moon icon */
+        [data-theme="light"] .theme-toggle-btn .sun-icon { display: block; }
+        [data-theme="light"] .theme-toggle-btn .moon-icon { display: none; }
 
         /* Native Text-Based Three-Line Toggle Button (Zero Padding) */
         .menu-trigger {
@@ -168,11 +169,12 @@
         }
 
         /* Fullscreen Navigation Overlay */
+        /* Fullscreen Navigation Overlay — Optimized for Hardware Acceleration */
         .fullscreen-menu {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             background: var(--nav-bg);
             backdrop-filter: blur(35px);
@@ -181,15 +183,20 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+    
+            /* FIX: Pre-render layout constraints and shift off-screen using transform */
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            visibility: hidden;
+            transform: translateY(-20px);
+            will-change: transform, opacity;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             z-index: 1001;
         }
 
         .fullscreen-menu.active {
             opacity: 1;
-            pointer-events: all;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .menu-close-btn {
@@ -547,15 +554,17 @@
             }
         }
 
-        // Global Dark / Light Theme Engine (Defaulting natively to Light)
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        }
+        // Global Dark / Light Theme Engine (Defaulting natively to Dark)
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        // If it's already light, remove the attribute to fall back to default dark :root
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        // If it's dark, set the attribute to trigger light mode variables
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+}
     </script>
 </body>
 </html>
