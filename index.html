@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +13,11 @@
     
     <meta property="og:image" content="https://darshseraphic.github.io/preview.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
     <style>
-        
-        /* CORE SYSTEM VARIABLES // PURE BRUTALIST MONOCHROME */
         :root {
             --bg-color: #000000;
             --text-main: #FFFFFF;
@@ -27,7 +30,6 @@
             --highlight-text: #000000;
         }
 
-        /* LIGHT MODE INVERSION MATRIX */
         [data-theme="light"] {
             --bg-color: #FFFFFF;
             --text-main: #000000;
@@ -39,12 +41,11 @@
             --highlight-text: #FFFFFF;
         }
 
-        /* RESET & BASE ENFORCEMENT */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            border-radius: 0 !important; /* STRICT ZERO-RADIUS POLICY */
+            border-radius: 0 !important;
         }
 
         html {
@@ -59,10 +60,9 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             font-size: 14px;
-            transition: background-color 0s, color 0s; /* INSTANT TOGGLE */
+            transition: background-color 0s, color 0s;
         }
 
-        /* TYPOGRAPHY */
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -100,7 +100,6 @@
             font-weight: 700;
         }
 
-        /* STRUCTURAL CONTAINERS */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -116,7 +115,6 @@
             justify-content: center;
         }
 
-        /* NAVIGATION BAR */
         nav {
             position: fixed;
             top: 0;
@@ -131,18 +129,17 @@
             justify-content: space-between;
             align-items: center;
             height: 54px;
-            padding: 0 1.5rem; /* Balanced edge padding */
-            max-width: 100%;    /* Allows full screen width */
+            padding: 0 1.5rem;
+            max-width: 100%;
             margin: 0;
         }
 
         .nav-left-group {
             display: flex;
             align-items: center;
-            gap: 1rem; /* Balanced space between PFP and toggle */
+            gap: 1rem;
         }
 
-        /* SQUARE PFP */
         .pfp-placeholder {
             width: 24px;
             height: 24px;
@@ -159,7 +156,6 @@
             filter: invert(100%);
         }
 
-        /* TEXT-BASED BUTTON ARCHITECTURE */
         button {
             background: none;
             border: none;
@@ -186,7 +182,6 @@
             border: 0.8px solid var(--border-color);
         }
 
-        /* TERMINAL FULLSCREEN OVERLAY */
         .fullscreen-menu {
             position: fixed;
             top: 0;
@@ -234,7 +229,6 @@
             border-left: 4px solid var(--text-main);
         }
 
-        /* CORE COMPETENCY GRID */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -251,7 +245,6 @@
             border-bottom: 0.8px solid var(--border-color);
         }
 
-        /* PROJECT MATRIX GRAPHICS */
         .project-block {
             border: 0.8px solid var(--border-color);
             padding: 2rem;
@@ -285,7 +278,6 @@
             filter: grayscale(0%);
         }
 
-        /* BRUTALIST APP LINK SYSTEM */
         .app-link-container {
             margin-top: 1.5rem;
             padding-top: 1rem;
@@ -314,7 +306,6 @@
             opacity: 0.7;
         }
 
-        /* PROGRESSIVE STATUS TELEMETRY SYSTEM */
         .status-node {
             color: var(--text-muted);
             font-weight: 700;
@@ -336,7 +327,6 @@
             50% { content: "..."; }
         }
 
-        /* CLI SHELL BLOCKS */
         .terminal-block {
             background-color: var(--terminal-bg);
             border: 0.8px solid var(--border-color);
@@ -349,7 +339,6 @@
             font-weight: 700;
         }
 
-        /* ROUTING LINES */
         .links-wrapper {
             border-top: 0.8px solid var(--border-color);
             margin-top: 2rem;
@@ -378,7 +367,6 @@
             color: var(--text-muted);
         }
 
-        /* RESPONSIVE SUB-VIEWPORTS */
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             section { padding: 6rem 0; min-height: auto; }
@@ -472,17 +460,17 @@
     <section id="asrio-build">
         <div class="container">
             <h2>03. Flagship Cryptographic Build</h2>
-            <h1>Asrio Workspace</h1>
+            <h1>Systems Workspace Context</h1>
             
             <p style="max-width: 600px;">
                 An entirely self-contained, local-first secure notebook context engineered to operate natively inside offline sandboxed storage environments.
             </p>
             
             <div class="project-block">
-                <div class="tag">PROD_ARCH :: ASRIO</div>
+                <div class="tag">PROD_ARCH :: CORE</div>
                 <h3>Privacy-First Encrypted Architecture</h3>
                 
-                <iframe src="https://asrio.lovable.app/" class="preview-frame" title="Asrio Live Preview"></iframe>
+                <iframe src="https://asrio.lovable.app/" class="preview-frame" title="Live Preview"></iframe>
 
                 <p>• <strong>Hardware Cryptography:</strong> Implemented AES-256 encryptions paired into hardware-isolated secure elements (Android Keystore / iOS Keychain).</p>
                 <p>• <strong>High-Throughput Storage:</strong> Configured a type-safe Drift SQLite database operating in WAL concurrency mode.</p>
