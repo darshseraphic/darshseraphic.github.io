@@ -13,40 +13,40 @@
     <meta property="og:title" content="Darshan Jadhav // Systems Portfolio">
     <meta property="og:description" content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds.">
     <meta property="og:image" content="https://darshseraphic.github.io/preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="627">
     
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://darshseraphic.github.io/">
-    <meta name="twitter:title" content="Darshan Jadhav // Systems Portfolio">
-    <meta name="twitter:description" content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds.">
-    <meta name="twitter:image" content="https://darshseraphic.github.io/preview.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #000000;
-            --text-main: #FFFFFF;
-            --text-muted: #888888;
-            --border-color: #333333;
-            --card-bg: #050505;
-            --terminal-bg: #0A0A0A;
-            --font-stack: "Space Mono", "Courier New", Courier, monospace;
-            --highlight: #FFFFFF;
-            --highlight-text: #000000;
+            /* Default Base: Premium Gallery Light Palette (White) */
+            --bg-color: #F5F5F2; 
+            --text-main: #000000;
+            --text-muted: #555555;
+            --border-color: #000000;
+            --card-bg: #FFFFFF;
+            --terminal-bg: #111111;
+            --terminal-text: #F5F5F2;
+            --font-display: "Syne", sans-serif;
+            --font-mono: "Space Mono", monospace;
+            --border-thick: 3px solid #000000;
+            --shadow-main: 12px 12px 0px #000000;
+            --shadow-hover: 18px 18px 0px #000000;
         }
 
-        [data-theme="light"] {
-            --bg-color: #FFFFFF;
-            --text-main: #000000;
-            --text-muted: #666666;
-            --border-color: #000000;
-            --card-bg: #F5F5F5;
-            --terminal-bg: #EAEAEA;
-            --highlight: #000000;
-            --highlight-text: #FFFFFF;
+        [data-theme="dark"] {
+            /* Inverted Base: Premium Void Dark Palette */
+            --bg-color: #0B0B0B;
+            --text-main: #F5F5F2;
+            --text-muted: #8A8A8A;
+            --border-color: #F5F5F2;
+            --card-bg: #121212;
+            --terminal-bg: #1A1A1A;
+            --terminal-text: #F5F5F2;
+            --border-thick: 3px solid #F5F5F2;
+            --shadow-main: 12px 12px 0px #F5F5F2;
+            --shadow-hover: 18px 18px 0px #F5F5F2;
         }
 
         * {
@@ -56,6 +56,12 @@
             border-radius: 0 !important;
         }
 
+        /* Custom Keyboard Focus States */
+        button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+            outline: 3px dashed var(--text-main);
+            outline-offset: 4px;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -63,44 +69,81 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: var(--font-stack);
+            font-family: var(--font-mono);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             font-size: 14px;
-            transition: background-color 0s, color 0s;
         }
 
+        /* Clean Structural Class Designations */
+        .hero-subtitle {
+            color: var(--text-muted); 
+            font-family: var(--font-mono); 
+            font-size: 0.4em; 
+            display: block; 
+            margin-top: 1rem;
+        }
+
+        .lead-text {
+            font-size: clamp(1.05rem, 2vw, 1.25rem); 
+            max-width: 100%; 
+            margin-bottom: 2rem;
+        }
+
+        .academic-box {
+            border-left: var(--border-thick); 
+            padding-left: 1.5rem; 
+            max-width: 100%;
+        }
+
+        .section-connect {
+            border-bottom: none; 
+            min-height: auto; 
+            padding-bottom: 8rem;
+        }
+
+        /* Fluid Typographic Scales */
         h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 6.5vw + 0.5rem, 6rem);
+            font-weight: 800;
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            margin-bottom: 2.5rem;
             text-transform: uppercase;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
 
         h2 {
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+            margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--text-muted);
-            border-bottom: 0.8px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            background: var(--text-main);
+            color: var(--bg-color);
             display: inline-block;
+            padding: 6px 12px;
+            font-weight: 700;
         }
 
         h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
             text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1;
         }
 
         p {
             color: var(--text-muted);
             margin-bottom: 1.5rem;
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            max-width: 650px;
         }
 
         strong {
@@ -109,26 +152,28 @@
         }
 
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 clamp(1.2rem, 5vw, 4rem);
         }
 
         section {
-            padding: 8rem 0;
-            border-bottom: 0.8px solid var(--border-color);
+            padding: clamp(4rem, 8vh, 10rem) 0;
+            border-bottom: var(--border-thick);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: var(--bg-color);
-            border-bottom: 0.8px solid var(--border-color);
+            border-bottom: var(--border-thick);
             z-index: 1000;
         }
 
@@ -136,60 +181,59 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 54px;
-            padding: 0 1.5rem;
-            max-width: 100%;
-            margin: 0;
+            height: 72px;
+            padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
         .nav-left-group {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
         }
 
         .pfp-placeholder {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
             background-color: var(--card-bg);
-            border: 0.8px solid var(--border-color);
+            border: var(--border-thick);
             background-image: url('pfp.jpg'); 
             background-size: cover;
             background-position: center;
             cursor: pointer;
-            transition: filter 0.2s;
+            transition: transform 0.1s;
         }
 
         .pfp-placeholder:hover {
-            filter: invert(100%);
+            transform: scale(1.05);
         }
 
         button {
             background: none;
             border: none;
             color: var(--text-main);
-            font-family: var(--font-stack);
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        button:hover {
-            background: var(--text-main);
-            color: var(--bg-color);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
         }
 
         .theme-toggle-btn, .menu-trigger {
-            padding: 4px 8px;
-            border: 0.8px solid transparent;
+            padding: 8px 14px;
+            border: var(--border-thick);
+            background: var(--card-bg);
+            box-shadow: 4px 4px 0px var(--text-main);
+            transition: all 0.1s ease;
         }
 
         .theme-toggle-btn:hover, .menu-trigger:hover {
-            border: 0.8px solid var(--border-color);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--text-main);
         }
 
+        /* Responsive Fullscreen Overlay Menu */
         .fullscreen-menu {
             position: fixed;
             top: 0;
@@ -201,10 +245,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            padding-left: 20%;
+            padding-left: clamp(1.2rem, 8vw, 10%);
+            padding-right: 1.2rem;
             opacity: 0;
             visibility: hidden;
             z-index: 1001;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
         }
 
         .fullscreen-menu.active {
@@ -214,193 +261,355 @@
 
         .menu-close-btn {
             position: absolute;
-            top: 15px;
-            right: 2rem;
-            padding: 4px 8px;
-            border: 0.8px solid var(--border-color);
+            top: 20px;
+            right: clamp(1rem, 3vw, 2rem);
+            padding: 8px 14px;
+            border: var(--border-thick);
+            background: var(--card-bg);
         }
 
         .fullscreen-menu a {
+            font-family: var(--font-display);
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 2.3rem;
-            font-weight: 700;
+            font-size: clamp(1.5rem, 4.2vw + 0.3rem, 3.8rem);
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: -0.05em;
-            margin: 0.8rem 0;
-            transition: color 0s, padding-left 0.2s ease;
+            line-height: 1.2;
+            margin: 0.3rem 0;
+            transition: transform 0.2s ease, color 0.15s ease;
+            word-break: keep-all; 
+            overflow-wrap: break-word;
         }
 
         .fullscreen-menu a:hover {
             color: var(--text-main);
-            padding-left: 20px;
-            border-left: 4px solid var(--text-main);
+            transform: translateX(12px);
+        }
+
+        /* Layout Architecture Containers */
+        .identity-split {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            border-top: 0.8px solid var(--border-color);
-            border-left: 0.8px solid var(--border-color);
-            margin-top: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(1rem, 2vw, 1.5rem);
         }
 
         .skill-card {
-            background-color: var(--bg-color);
-            padding: 2rem;
-            border-right: 0.8px solid var(--border-color);
-            border-bottom: 0.8px solid var(--border-color);
+            background-color: var(--card-bg);
+            padding: clamp(1.2rem, 3vw, 2.5rem);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-main);
+            transition: all 0.2s ease;
+        }
+
+        .skill-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .exp-box {
+            border: var(--border-thick); 
+            padding: clamp(1.5rem, 4vw, 3.5rem); 
+            background: var(--card-bg); 
+            box-shadow: var(--shadow-main);
         }
 
         .project-block {
-            border: 0.8px solid var(--border-color);
-            padding: 2rem;
-            margin-bottom: 3rem;
-            background-color: var(--bg-color);
+            border: var(--border-thick);
+            padding: clamp(1.2rem, 4vw, 3.5rem);
+            margin-bottom: clamp(3rem, 8vh, 6rem);
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-main);
+            transition: all 0.2s ease;
+        }
+
+        .project-block:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-hover);
         }
         
         .tag {
             display: inline-block;
-            font-size: 0.75rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            padding: 6px 12px;
+            border: var(--border-thick);
+            background: var(--bg-color);
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        /* Tech Chip Row */
+        .tech-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chip {
+            font-size: 0.7rem;
+            font-weight: 700;
             padding: 4px 8px;
-            background: var(--text-main);
-            color: var(--bg-color);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Performance Frame with Lazy Core Container Hooks */
+        .preview-frame-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+            aspect-ratio: 16 / 10;
+            border: var(--border-thick);
+            background-color: #111111;
         }
 
         .preview-frame {
             width: 100%;
-            height: 480px;
-            border: 0.8px solid var(--border-color);
-            margin: 1.5rem 0;
-            background-color: var(--terminal-bg);
+            height: 100%;
+            border: none;
             filter: grayscale(100%);
-            transition: filter 0.3s ease;
+            transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .preview-frame:hover {
+        .project-block:hover .preview-frame {
             filter: grayscale(0%);
         }
 
-        .app-link-container {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 0.8px dashed var(--border-color);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .frame-placeholder {
+            position: absolute;
+            inset: 0;
+            background: #111111;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            color: #FFFFFF;
+            padding: 2rem;
+            text-align: center;
         }
 
-        .app-link-item {
-            color: var(--text-muted);
+        .frame-placeholder p {
+            color: #8A8A8A;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .boot-btn {
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            background: transparent;
+            box-shadow: 4px 4px 0px #FFFFFF;
+            transition: all 0.1s ease;
+        }
+
+        .boot-btn:hover {
+            background: #FFFFFF;
+            color: #000000;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #FFFFFF;
+        }
+
+        .app-link-container {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
         .app-link {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
-            border-bottom: 1px solid var(--text-main);
-            transition: opacity 0.2s;
+            border-bottom: 2px solid var(--text-main);
+            display: inline-block;
             word-break: break-all;
         }
 
         .app-link:hover {
-            opacity: 0.7;
+            background: var(--text-main);
+            color: var(--bg-color);
         }
 
-        .status-node {
-            color: var(--text-muted);
-            font-weight: 700;
-            display: inline-flex;
-        }
-
-        .status-node::after {
-            content: ".";
-            display: inline-block;
-            text-align: left;
-            min-width: 24px;
-            padding-left: 2px;
-            animation: telemetryLoop 1.6s infinite step-end;
-        }
-
-        @keyframes telemetryLoop {
-            0%, 100% { content: "."; }
-            25%, 75% { content: ".."; }
-            50% { content: "..."; }
-        }
-
+        /* Interactive Terminal Pipeline Styles */
         .terminal-block {
             background-color: var(--terminal-bg);
-            border: 0.8px solid var(--border-color);
-            padding: 1.5rem;
-            color: var(--text-muted);
+            border: var(--border-thick);
+            padding: clamp(1.2rem, 3vw, 2rem);
+            color: var(--terminal-text);
+            box-shadow: var(--shadow-main);
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .terminal-log {
+            overflow-y: auto;
+            max-height: 250px;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
         .terminal-block .command {
-            color: var(--text-main);
+            color: #00FF66; 
             font-weight: 700;
         }
 
-        .links-wrapper {
-            border-top: 0.8px solid var(--border-color);
+        .terminal-input-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-top: 1px dashed #333333;
+            padding-top: 0.5rem;
+        }
+
+        .terminal-prompt {
+            color: #00FF66;
+            font-weight: 700;
+        }
+
+        .terminal-field {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--terminal-text);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .philosophy-wrapper {
+            border-left: var(--border-thick); 
+            padding-left: clamp(1.2rem, 4vw, 3rem); 
             margin-top: 2rem;
+        }
+
+        .links-wrapper {
+            border-top: var(--border-thick);
+            margin-top: 3rem;
         }
 
         .clean-link-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 1rem;
-            border-bottom: 0.8px solid var(--border-color);
-            border-left: 0.8px solid transparent;
+            padding: clamp(1.2rem, 3vw, 2rem) 1rem;
+            border-bottom: var(--border-thick);
             text-decoration: none;
             color: var(--text-main);
             text-transform: uppercase;
             font-weight: 700;
-            transition: background 0.2s;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            transition: all 0.15s ease;
+            gap: 1rem;
         }
 
         .clean-link-row:hover {
-            background: var(--card-bg);
-            border-left: 4px solid var(--text-main);
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding-left: 2rem;
         }
 
         .clean-link-row .arrow {
-            color: var(--text-muted);
+            text-align: right;
+            word-break: break-all;
         }
 
-        @media (max-width: 768px) {
-            h1 { 
-                font-size: 1.8rem; 
+        /* Tablet Layout Configurations (Max-Width: 1024px) */
+        @media (max-width: 1024px) {
+            .identity-split {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
-            section { 
-                padding: 4rem 0; 
-                min-height: auto; 
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .skills-grid { 
-                grid-template-columns: 1fr; 
+
+            :root {
+                --shadow-main: 10px 10px 0px #000000;
+                --shadow-hover: 14px 14px 0px #000000;
             }
-            .fullscreen-menu { 
-                padding-left: 10%; 
+
+            [data-theme="dark"] {
+                --shadow-main: 10px 10px 0px #F5F5F2;
+                --shadow-hover: 14px 14px 0px #F5F5F2;
             }
-            .fullscreen-menu a { 
-                font-size: 1.5rem; 
-                line-height: 1.3;
+        }
+
+        /* Mobile Layout Configurations (Max-Width: 600px) */
+        @media (max-width: 600px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
-            .preview-frame { 
-                height: 320px; 
-                width: 100%;
-                max-width: 100%;
+
+            .clean-link-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+
+            .clean-link-row .arrow {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                text-align: left;
+            }
+
+            .clean-link-row:hover .arrow {
+                color: var(--bg-color);
+            }
+
+            .preview-frame-wrapper {
+                aspect-ratio: 4 / 3; 
+                margin: 1.5rem 0;
+            }
+
+            :root {
+                --border-thick: 2.5px solid #000000;
+                --shadow-main: 6px 6px 0px #000000;
+                --shadow-hover: 8px 8px 0px #000000;
+            }
+
+            [data-theme="dark"] {
+                --border-thick: 2.5px solid #F5F5F2;
+                --shadow-main: 6px 6px 0px #F5F5F2;
+                --shadow-hover: 8px 8px 0px #F5F5F2;
+            }
+
+            .theme-toggle-btn, .menu-trigger {
+                box-shadow: 3px 3px 0px var(--text-main);
             }
         }
     </style>
+    <script>
+        /* Strict Intercept Configuration: Absolute White/Light Interface Initial State */
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            // Ignores standard machine preferences to keep white baseline initialization intact
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body>
 
@@ -412,11 +621,11 @@
                 </a>
                 <button class="theme-toggle-btn" onclick="toggleTheme()">[ INVERT ]</button>
             </div>
-            <button class="menu-trigger" onclick="toggleMenu()">[ MENU ]</button>
+            <button class="menu-trigger" id="menuTrigger" onclick="toggleMenu()" aria-haspopup="true" aria-expanded="false">[ MENU ]</button>
         </div>
     </nav>
 
-    <div class="fullscreen-menu" id="navMenu">
+    <div class="fullscreen-menu" id="navMenu" aria-label="Main Navigation Context">
         <button class="menu-close-btn" onclick="toggleMenu()">[ CLOSE ]</button>
         <a href="#identity" onclick="toggleMenu()">// 01. Identity</a>
         <a href="#experience" onclick="toggleMenu()">// 02. Performance</a>
@@ -428,229 +637,355 @@
         <a href="#connect" onclick="toggleMenu()">// 08. Connect</a>
     </div>
 
-    <section id="identity">
-        <div class="container">
-            <h2>01. Systems Engineer Profile</h2>
-            <h1>Darshan Jadhav <br><span style="color: var(--text-muted);">Mobile & Desktop Architecture.</span></h1>
-            
-            <p style="max-width: 620px; font-size: 1.1rem;">
-                Performance-driven engineer specializing in local-first systems architecture, highly reactive data channels, and hardware-backed cryptographic sandboxing environments.
-            </p>
-
-            <p style="border-left: 2px solid var(--border-color); padding-left: 1rem;">
-                <strong>Academic Framework:</strong> Third Year Candidate, Diploma in Computer Engineering & IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
-            </p>
-
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Cross-Platform</h3>
-                    <p>Building high-performance apps matching Dart framework kernels with low-level native subsystems (Kotlin, Java, C++).</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Local-First</h3>
-                    <p>Compiling clean, reactive relational databases with Drift (Moor), SQLite relational modeling, and Hive K-V pairs.</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Device Security</h3>
-                    <p>Securing sandbox bounds with custom hardware ciphers via Android Keystore and iOS Keychain arrays.</p>
-                </div>
-                <div class="skill-card">
-                    <h3>State Architecture</h3>
-                    <p>Managing structural event streams through continuous Riverpod graphs, BLoC nodes, and reactive data adaptations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2>02. Engineering Production Record</h2>
-            <h1>Active Execution</h1>
-            
-            <p style="max-width: 650px; font-size: 1.1rem;">
-                Currently executing application framework tuning parameters as an active engineer inside production source code trees.
-            </p>
-
-            <div style="border: 0.8px solid var(--border-color); padding: 2rem; background: var(--card-bg);">
-                <h3>Software Engineer Intern</h3>
-                <p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
+    <main id="primaryContent" aria-hidden="false">
+        <section id="identity">
+            <div class="container">
+                <h2>01. Systems Engineer Profile</h2>
+                <h1>Darshan Jadhav <br><span class="hero-subtitle">Mobile & Desktop Architecture.</span></h1>
                 
-                <p>• <strong>Query Optimization:</strong> Re-architected data sub-structures and stream parsing, removing redundant widget rendering loops by <strong>40%</strong> to enforce a locked 60/120 FPS runtime.</p>
-                <p>• <strong>Native Channels:</strong> Integrated explicit platform bindings directly accessing background OS APIs for decoupled scheduling.</p>
-                <p style="margin-bottom: 0;">• <strong>Deterministic Testing:</strong> Programmed strict automated integration suites resulting in <strong>90%+ test coverage</strong> across breaking external framework mutations.</p>
-            </div>
-        </div>
-    </section>
+                <div class="identity-split">
+                    <div>
+                        <p class="lead-text">
+                            Performance-driven engineer specializing in local-first systems architecture, highly reactive data channels, and hardware-backed cryptographic sandboxing environments.
+                        </p>
+                        <p class="academic-box">
+                            <strong>Academic Framework:</strong> Third Year Candidate, Diploma in Computer Engineering & IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
+                        </p>
+                    </div>
 
-    <section id="doingnow-build">
-        <div class="container">
-            <h2>03. Concurrent Peripheral Build</h2>
-            <h1>DoingNow Anchor</h1>
-            
-            <p style="max-width: 600px;">
-                A low-latency performance monitor matching localized physical Bluetooth hardware triggers directly with decoupled memory mutation maps.
-            </p>
-
-            <div class="project-block">
-                <div class="tag">HW_SYS :: DOINGNOW</div>
-                <h3>Isolate Partitioning & Cache</h3>
-
-                <iframe src="https://doingnow.lovable.app" class="preview-frame" style="height: 400px;" title="DoingNow Live Preview"></iframe>
-
-                <p>• <strong>BLE Communications:</strong> Connected custom low-energy hardware proximity peripherals directly to system logs to initialize microsecond timing counters.</p>
-                <p style="margin-bottom: 0;">• <strong>Isolate Concurrency:</strong> Structured a data processor delegating intense packet transformations to dedicated background isolates.</p>
-                
-                <div class="app-link-container">
-                    <div class="app-link-item">Website: <a href="https://doingnow.lovable.app" target="_blank" class="app-link">https://doingnow.lovable.app/</a></div>
-                    <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/doingnow" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow</a></div>
-                    <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/doingnow/releases/download/v0.1.0/doingnow.apk" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow/.../doingnow.apk</a></div>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h3>Cross-Platform</h3>
+                            <p>Building high-performance apps matching Dart framework kernels with low-level native subsystems (Kotlin, Java, C++).</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Local-First</h3>
+                            <p>Compiling clean, reactive relational databases with Drift (Moor), SQLite relational modeling, and Hive K-V pairs.</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Device Security</h3>
+                            <p>Securing sandbox bounds with custom hardware ciphers via Android Keystore and iOS Keychain arrays.</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>State Architecture</h3>
+                            <p>Managing structural event streams through continuous Riverpod graphs, BLoC nodes, and reactive data adaptations.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <h2>Pipeline Execution Sequence</h2>
-            <div class="terminal-block">
-                <span class="command">$ dart run compiler:initialize_isolate_pool --verbose</span><br><br>
-                > Spawned long-running background worker isolate (ID: 0x8F2B)<br>
-                > Mapping high-speed binary adapters to memory cache (Hive O(1) mutations active)<br>
-                > Parsing incoming peripheral packet transmission stream ... [Status: 100% Locked]
-            </div>
-        </div>
-    </section>
-
-    <section id="rocen-build">
-        <div class="container">
-            <h2>04. Production Interface Suite</h2>
-            <h1>Rocen Workspace Matrix</h1>
-            
-            <p style="max-width: 600px;">
-                A high-efficiency, zero-border application compilation canvas consolidating critical system subsystems into a streamlined, low-overhead UI layout engine.
-            </p>
-
-            <div class="project-block">
-                <div class="tag">DEPLOY_CORE :: ROCEN</div>
-                <h3>Consolidated Workspace Pipeline Hub</h3>
-
-                <iframe src="https://rocen.lovable.app/" class="preview-frame" title="Rocen Live Preview"></iframe>
-
-                <p>• <strong>Micro-Utility Thread Loops:</strong> Structured high-density cross-functional controls—spanning QuickNote text engines, synchronized storage clips, transactional checklists, and 365 environment configurations—into a single performance loop context.</p>
-                <p style="margin-bottom: 0;">• <strong>Layout Optimization:</strong> Configured a responsive flexbox display matrix entirely devoid of structural padding clutter or heavy grid definitions to guarantee ultra-fast, zero-border frame parsing speeds.</p>
+        <section id="experience">
+            <div class="container">
+                <h2>02. Engineering Production Record</h2>
+                <h1>Active Execution</h1>
                 
-                <div class="app-link-container">
-                    <div class="app-link-item">Website: <a href="https://rocen.lovable.app/" target="_blank" class="app-link">https://rocen.lovable.app/</a></div>
-                    <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Rocen" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen</a></div>
-                    <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Rocen/releases/download/v0.1.0/Rocen.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen/.../Rocen.apk</a></div>
+                <p class="lead-text" style="margin-bottom: 3rem;">
+                    Currently executing application framework tuning parameters as an active engineer inside production source code trees.
+                </p>
+
+                <div class="exp-box">
+                    <h3 style="font-size: clamp(1.4rem, 3vw, 2.2rem);">Software Engineer Intern</h3>
+                    <p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
+                    <br>
+                    <p style="max-width: 100%;">• <strong>Query Optimization:</strong> Re-architected data sub-structures and stream parsing, removing redundant widget rendering loops by <strong>40%</strong> to enforce a locked 60/120 FPS runtime.</p>
+                    <p style="max-width: 100%;">• <strong>Native Channels:</strong> Integrated explicit platform bindings directly accessing background OS APIs for decoupled scheduling.</p>
+                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Deterministic Testing:</strong> Programmed strict automated integration suites resulting in <strong>90%+ test coverage</strong> across breaking external framework mutations.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="reacnar-build">
-        <div class="container">
-            <h2>05. Active Incubation Build</h2>
-            <h1>Reacnar</h1>
-            
-            <p style="max-width: 600px;">
-                A next-generation system framework currently undergoing active development and performance tuning. Architecture and feature-sets are actively compiling.
-            </p>
-
-            <div class="project-block">
-                <div class="tag">WIP_NODE :: REACNAR</div>
-                <h3>Live Development Branch</h3>
-
-                <iframe src="https://reacnar.lovable.app/" class="preview-frame" title="Reacnar Live Preview"></iframe>
-
-                <p>• <strong>System Status:</strong> Pre-release architecture. Currently stress-testing component mounting algorithms and rendering trees.</p>
-                <p style="margin-bottom: 0;">• <strong>Development Objective:</strong> Establishing a high-density, fault-tolerant user environment engineered with decoupled event pipelines.</p>
+        <section id="doingnow-build">
+            <div class="container">
+                <h2>03. Concurrent Peripheral Build</h2>
+                <h1>DoingNow Anchor</h1>
                 
-                <div class="app-link-container">
-                    <div class="app-link-item">Website: <a href="https://reacnar.lovable.app/" target="_blank" class="app-link">https://reacnar.lovable.app/</a></div>
-                    <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Reacnar" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar</a></div>
-                    <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Reacnar/releases/download/v0.1.0/Reacnar.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar/.../Reacnar.apk</a></div>
+                <p>
+                    A low-latency performance monitor matching localized physical Bluetooth hardware triggers directly with decoupled memory mutation maps.
+                </p>
+
+                <div class="project-block">
+                    <div class="tag">HW_SYS :: DOINGNOW</div>
+                    <div class="tech-chips">
+                        <span class="chip">Dart</span>
+                        <span class="chip">Flutter</span>
+                        <span class="chip">BLE Subsystem</span>
+                        <span class="chip">Hive DB</span>
+                    </div>
+                    <h3>Isolate Partitioning & Cache</h3>
+
+                    <div class="preview-frame-wrapper">
+                        <div class="frame-placeholder" id="placeholder-doingnow">
+                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
+                            <button class="boot-btn" onclick="initializeSandbox('doingnow', 'https://doingnow.lovable.app')">[ BOOT CORE INTERFACE ]</button>
+                        </div>
+                    </div>
+
+                    <p style="max-width: 100%;">• <strong>BLE Communications:</strong> Connected custom low-energy hardware proximity peripherals directly to system logs to initialize microsecond timing counters.</p>
+                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Isolate Concurrency:</strong> Structured a data processor delegating intense packet transformations to dedicated background isolates.</p>
+                    
+                    <div class="app-link-container">
+                        <div class="app-link-item">Website: <a href="https://doingnow.lovable.app" target="_blank" class="app-link">https://doingnow.lovable.app/</a></div>
+                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/doingnow" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow</a></div>
+                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/doingnow/releases/download/v0.1.0/doingnow.apk" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow/.../doingnow.apk</a></div>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 2rem;">Pipeline Execution Sequence</h2>
+                <div class="terminal-block">
+                    <div class="terminal-log" id="terminalLog">
+&gt; Spawned long-running background worker isolate (ID: 0x8F2B)
+&gt; Mapping high-speed binary adapters to memory cache (Hive O(1) mutations active)
+&gt; Parsing incoming peripheral packet transmission stream ... [Status: 100% Locked]
+&gt; Type 'help' or 'sysinfo' into environment matrix routing pipeline...</div>
+                    <div class="terminal-input-container">
+                        <span class="terminal-prompt">$</span>
+                        <input type="text" class="terminal-field" id="terminalInputField" placeholder="enter operational execution route..." autocomplete="off" aria-label="Terminal Input Arena">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="exomic-build">
-        <div class="container">
-            <h2>06. Ledger Engine Pipeline</h2>
-            <h1>Exomic Workspace</h1>
-            
-            <p style="max-width: 600px;">
-                A high-performance localized ledger environment designed for structural state recording and secure asset data pipelines.
-            </p>
-
-            <div class="project-block">
-                <div class="tag">LEDGER_SYS :: EXOMIC</div>
-                <h3>State Synchronization Canvas</h3>
-
-                <iframe src="https://darshseraphic.github.io/Exomic-web/" class="preview-frame" title="Exomic Live Preview"></iframe>
-
-                <p>• <strong>Deterministic Rendering:</strong> Implemented explicit event streaming models ensuring real-time localized transactions process without interface stuttering or lagging frames.</p>
-                <p style="margin-bottom: 0;">• <strong>Data Architecture:</strong> Programmed resilient schema matrices optimized for instantaneous local state tracking and isolated utility sandboxing.</p>
+        <section id="rocen-build">
+            <div class="container">
+                <h2>04. Production Interface Suite</h2>
+                <h1>Rocen Workspace Matrix</h1>
                 
-                <div class="app-link-container">
-                    <div class="app-link-item">Website: <a href="https://darshseraphic.github.io/Exomic-web/" target="_blank" class="app-link">https://darshseraphic.github.io/Exomic-web/</a></div>
-                    <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Exomic-web" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic/</a></div>
-                    <div class="app-link-item">Download: <a href="https://darshseraphic.github.io/Exomic-web/" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic/releases/download/v0.1.0/Exomic.apk</a></div>
+                <p>
+                    A high-efficiency, zero-border application compilation canvas consolidating critical system subsystems into a streamlined, low-overhead UI layout engine.
+                </p>
+
+                <div class="project-block">
+                    <div class="tag">DEPLOY_CORE :: ROCEN</div>
+                    <div class="tech-chips">
+                        <span class="chip">Flutter</span>
+                        <span class="chip">Drift SQL</span>
+                        <span class="chip">Reactive Thread Loops</span>
+                    </div>
+                    <h3>Consolidated Workspace Pipeline Hub</h3>
+
+                    <div class="preview-frame-wrapper">
+                        <div class="frame-placeholder" id="placeholder-rocen">
+                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
+                            <button class="boot-btn" onclick="initializeSandbox('rocen', 'https://rocen.lovable.app/')">[ BOOT CORE INTERFACE ]</button>
+                        </div>
+                    </div>
+
+                    <p style="max-width: 100%;">• <strong>Micro-Utility Thread Loops:</strong> Structured high-density cross-functional controls—spanning QuickNote text engines, synchronized storage clips, transactional checklists, and 365 environment configurations—into a single performance loop context.</p>
+                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Layout Optimization:</strong> Configured a responsive flexbox display matrix entirely devoid of structural padding clutter or heavy grid definitions to guarantee ultra-fast, zero-border frame parsing speeds.</p>
+                    
+                    <div class="app-link-container">
+                        <div class="app-link-item">Website: <a href="https://rocen.lovable.app/" target="_blank" class="app-link">https://rocen.lovable.app/</a></div>
+                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Rocen" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen</a></div>
+                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Rocen/releases/download/v0.1.0/Rocen.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen/.../Rocen.apk</a></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="philosophy">
-        <div class="container">
-            <h2>07. Architectural Philosophy</h2>
-            <h1>Execution Standards</h1>
-            
-            <div style="border-left: 0.8px solid var(--border-color); padding-left: 2rem;">
-                <h3 style="margin-top: 1rem;">// Local-First Supremacy</h3>
-                <p>I build under the assumption that external network connections are unstable. Processing pipelines and secure verification structures should execute locally on device storage.</p>
+        <section id="reacnar-build">
+            <div class="container">
+                <h2>05. Active Incubation Build</h2>
+                <h1>Reacnar</h1>
                 
-                <h3 style="margin-top: 2rem;">// Locked Rendering Frames</h3>
-                <p>Uncontrolled component reconstruction is a bug. I maintain strict architectural parsing models so visual presentations process event mutations smoothly without losing frames.</p>
-                
-                <h3 style="margin-top: 2rem;">// Functional Minimalism</h3>
-                <p>Interfaces should highlight information clearly. Visual styling uses strict alignment rules, quiet typographic scales, and high structural contrast limits.</p>
-            </div>
-        </div>
-    </section>
+                <p>
+                    A next-generation system framework currently undergoing active development and performance tuning. Architecture and feature-sets are actively compiling.
+                </p>
 
-    <section id="connect" style="border-bottom: none; min-height: auto; padding-bottom: 4rem;">
-        <div class="container">
-            <h2>08. Telemetry & Routing</h2>
-            <h1>Connection Nodes</h1>
-            
-            <div class="links-wrapper">
-                <a href="https://www.linkedin.com/in/darshseraphic" target="_blank" class="clean-link-row">
-                    <span>[ LinkedIn Network ]</span>
-                    <span class="arrow">/in/darshseraphic →</span>
-                </a>
-                <a href="https://github.com/darshseraphic" target="_blank" class="clean-link-row">
-                    <span>[ GitHub Repositories ]</span>
-                    <span class="arrow">/darshseraphic →</span>
-                </a>
-                <a href="https://lovable.dev/@darshseraphic" target="_blank" class="clean-link-row">
-                    <span>[ Lovable Node ]</span>
-                    <span class="arrow">@darshseraphic →</span>
-                </a>
+                <div class="project-block">
+                    <div class="tag">WIP_NODE :: REACNAR</div>
+                    <div class="tech-chips">
+                        <span class="chip">Incubation Engine</span>
+                        <span class="chip">Decoupled Architecture</span>
+                    </div>
+                    <h3>Live Development Branch</h3>
+
+                    <div class="preview-frame-wrapper">
+                        <div class="frame-placeholder" id="placeholder-reacnar">
+                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
+                            <button class="boot-btn" onclick="initializeSandbox('reacnar', 'https://reacnar.lovable.app/')">[ BOOT CORE INTERFACE ]</button>
+                        </div>
+                    </div>
+
+                    <p style="max-width: 100%;">• <strong>System Status:</strong> Pre-release architecture. Currently stress-testing component mounting algorithms and rendering trees.</p>
+                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Development Objective:</strong> Establishing a high-density, fault-tolerant user environment engineered with decoupled event pipelines.</p>
+                    
+                    <div class="app-link-container">
+                        <div class="app-link-item">Website: <a href="https://reacnar.lovable.app/" target="_blank" class="app-link">https://reacnar.lovable.app/</a></div>
+                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Reacnar" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar</a></div>
+                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Reacnar/releases/download/v0.1.0/Reacnar.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar/.../Reacnar.apk</a></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="exomic-build">
+            <div class="container">
+                <h2>06. Ledger Engine Pipeline</h2>
+                <h1>Exomic Workspace</h1>
+                
+                <p>
+                    A high-performance localized ledger environment designed for structural state recording and secure asset data pipelines.
+                </p>
+
+                <div class="project-block">
+                    <div class="tag">LEDGER_SYS :: EXOMIC</div>
+                    <div class="tech-chips">
+                        <span class="chip">State Mapping</span>
+                        <span class="chip">Deterministic Sandbox</span>
+                        <span class="chip">SQLite Engine</span>
+                    </div>
+                    <h3>State Synchronization Canvas</h3>
+
+                    <div class="preview-frame-wrapper">
+                        <div class="frame-placeholder" id="placeholder-exomic">
+                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
+                            <button class="boot-btn" onclick="initializeSandbox('exomic', 'https://darshseraphic.github.io/Exomic-web/')">[ BOOT CORE INTERFACE ]</button>
+                        </div>
+                    </div>
+
+                    <p style="max-width: 100%;">• <strong>Deterministic Rendering:</strong> Implemented explicit event streaming models ensuring real-time localized transactions process without interface stuttering or lagging frames.</p>
+                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Data Architecture:</strong> Programmed resilient schema matrices optimized for instantaneous local state tracking and isolated utility sandboxing.</p>
+                    
+                    <div class="app-link-container">
+                        <div class="app-link-item">Website: <a href="https://darshseraphic.github.io/Exomic-web/" target="_blank" class="app-link">https://darshseraphic.github.io/Exomic-web/</a></div>
+                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Exomic" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic</a></div>
+                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Exomic/releases/download/v0.1.0/Exomic.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic/.../Exomic.apk</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy">
+            <div class="container">
+                <h2>07. Architectural Philosophy</h2>
+                <h1>Execution Standards</h1>
+                
+                <div class="philosophy-wrapper">
+                    <h3 style="margin-top: 1rem;">// Local-First Supremacy</h3>
+                    <p style="max-width: 100%;">I build under the assumption that external network connections are unstable. Processing pipelines and secure verification structures should execute locally on device storage.</p>
+                    
+                    <h3 style="margin-top: 3rem;">// Locked Rendering Frames</h3>
+                    <p style="max-width: 100%;">Uncontrolled component reconstruction is a bug. I maintain strict architectural parsing models so visual presentations process event mutations smoothly without losing frames.</p>
+                    
+                    <h3 style="margin-top: 3rem;">// Functional Minimalism</h3>
+                    <p style="max-width: 100%;">Interfaces should highlight information clearly. Visual styling uses strict alignment rules, quiet typographic scales, and high structural contrast limits.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="connect" class="section-connect">
+            <div class="container">
+                <h2>08. Telemetry & Routing</h2>
+                <h1>Connection Nodes</h1>
+                
+                <div class="links-wrapper">
+                    <a href="mailto:darsh.seraphic@gmail.com" class="clean-link-row" aria-label="Establish Direct Email Communication Route">
+                        <span>[ Direct Signal Form ]</span>
+                        <span class="arrow">darsh.seraphic@gmail.com →</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/darshseraphic" target="_blank" class="clean-link-row">
+                        <span>[ LinkedIn Network ]</span>
+                        <span class="arrow">/in/darshseraphic →</span>
+                    </a>
+                    <a href="https://github.com/darshseraphic" target="_blank" class="clean-link-row">
+                        <span>[ GitHub Repositories ]</span>
+                        <span class="arrow">/darshseraphic →</span>
+                    </a>
+                    <a href="https://lovable.dev/@darshseraphic" target="_blank" class="clean-link-row">
+                        <span>[ Lovable Node ]</span>
+                        <span class="arrow">@darshseraphic →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+            const mainContent = document.getElementById('primaryContent');
+            const menuTrigger = document.getElementById('menuTrigger');
+            
+            const isMenuCurrentlyActive = menu.classList.toggle('active');
+            
+            document.body.style.overflow = isMenuCurrentlyActive ? 'hidden' : 'auto';
+            menuTrigger.setAttribute('aria-expanded', isMenuCurrentlyActive ? 'true' : 'false');
+            mainContent.setAttribute('aria-hidden', isMenuCurrentlyActive ? 'true' : 'false');
+            
+            // Hardware-level accessibility trap
+            mainContent.inert = isMenuCurrentlyActive;
         }
 
         function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                document.documentElement.removeAttribute('data-theme');
+            const htmlNode = document.documentElement;
+            const targetThemeIsDark = htmlNode.getAttribute('data-theme') !== 'dark';
+            
+            if (targetThemeIsDark) {
+                htmlNode.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             } else {
-                document.documentElement.setAttribute('data-theme', 'light');
+                htmlNode.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        /* Dynamic Component Injection Engine (Saves Application Initialization Overhead) */
+        function initializeSandbox(id, targetUrl) {
+            const containerPlaceholder = document.getElementById(`placeholder-${id}`);
+            if (!containerPlaceholder) return;
+            
+            const outerWrapper = containerPlaceholder.parentElement;
+            outerWrapper.removeChild(containerPlaceholder);
+            
+            const interactiveIframeNode = document.createElement('iframe');
+            interactiveIframeNode.src = targetUrl;
+            interactiveIframeNode.className = 'preview-frame';
+            interactiveIframeNode.title = `${id} Sandbox Runtime Platform`;
+            interactiveIframeNode.setAttribute('loading', 'lazy');
+            
+            outerWrapper.appendChild(interactiveIframeNode);
+        }
+
+        /* Interactive Matrix Terminal Interface System Script Hooks */
+        const shellInputTarget = document.getElementById('terminalInputField');
+        const displayLogBox = document.getElementById('terminalLog');
+
+        if(shellInputTarget) {
+            shellInputTarget.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    const rawTextLine = this.value.trim();
+                    if (!rawTextLine) return;
+                    
+                    appendLineToTerminal(`\n$ ${rawTextLine}`);
+                    processTerminalInstruction(rawTextLine.toLowerCase());
+                    this.value = '';
+                }
+            });
+        }
+
+        function appendLineToTerminal(text) {
+            displayLogBox.textContent += text;
+            displayLogBox.scrollTop = displayLogBox.scrollHeight;
+        }
+
+        function processTerminalInstruction(command) {
+            switch(command) {
+                case 'help':
+                    appendLineToTerminal('\n> AVAILABLE COMMAND RUNTIMES:\n  [sysinfo] - Output architecture metrics.\n  [clear]   - Flush screen buffers.\n  [identity]- Teleport view frame to index context.');
+                    break;
+                case 'sysinfo':
+                    appendLineToTerminal('\n> ENVIRONMENT TELEMETRY MATRIX:\n  OS_KERNEL: Custom Dart Runtime Substructures\n  COMPILER: Flutter 2026 Core Infrastructure\n  LOCATION: Pune, India Node\n  STATUS: Active Intern Integration Pipeline');
+                    break;
+                case 'clear':
+                    displayLogBox.textContent = '> System buffers initialized cleanly.';
+                    break;
+                case 'identity':
+                    appendLineToTerminal('\n> Routing navigation trace view matrix...');
+                    window.location.hash = '#identity';
+                    break;
+                default:
+                    appendLineToTerminal(`\n> Diagnostic Error: Routing pathway "${command}" unrecognized. Try executing 'help'.`);
             }
         }
     </script>
