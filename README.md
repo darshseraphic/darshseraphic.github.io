@@ -60,13 +60,8 @@ For verification or professional collaboration, use the direct system routing li
 Since this architecture relies strictly on native web runtime engines, you can clone and launch the workspace locally without configuring node environments or bundlers.
 
 ```bash
-# 1. Clone the repository registry
 git clone [https://github.com/darshseraphic/darshseraphic.io.git](https://github.com/darshseraphic/darshseraphic.io.git)
-
-# 2. Navigate to the project directory
 cd darshseraphic.io
-
-# 3. Open the entry file directly inside your native browser engine
 open index.html
 
 ```
