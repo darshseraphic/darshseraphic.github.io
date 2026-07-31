@@ -20,7 +20,7 @@
     
     <style>
         :root {
-            /* Default Base: Premium Gallery Light Palette (White) */
+
             --bg-color: #F5F5F2; 
             --text-main: #000000;
             --text-muted: #555555;
@@ -36,7 +36,6 @@
         }
 
         [data-theme="dark"] {
-            /* Inverted Base: Premium Void Dark Palette */
             --bg-color: #0B0B0B;
             --text-main: #F5F5F2;
             --text-muted: #8A8A8A;
@@ -56,7 +55,6 @@
             border-radius: 0 !important;
         }
 
-        /* Custom Keyboard Focus States */
         button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible {
             outline: 3px dashed var(--text-main);
             outline-offset: 4px;
@@ -76,7 +74,6 @@
             font-size: 14px;
         }
 
-        /* Clean Structural Class Designations */
         .hero-subtitle {
             color: var(--text-muted); 
             font-family: var(--font-mono); 
@@ -103,7 +100,6 @@
             padding-bottom: 8rem;
         }
 
-        /* Fluid Typographic Scales */
         h1 {
             font-family: var(--font-display);
             font-size: clamp(2.2rem, 6.5vw + 0.5rem, 6rem);
@@ -167,7 +163,6 @@
             justify-content: center;
         }
 
-        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
@@ -233,7 +228,6 @@
             box-shadow: 6px 6px 0px var(--text-main);
         }
 
-        /* Responsive Fullscreen Overlay Menu */
         .fullscreen-menu {
             position: fixed;
             top: 0;
@@ -287,7 +281,6 @@
             transform: translateX(12px);
         }
 
-        /* Layout Architecture Containers */
         .identity-split {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -348,7 +341,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Tech Chip Row */
         .tech-chips {
             display: flex;
             flex-wrap: wrap;
@@ -365,7 +357,6 @@
             text-transform: uppercase;
         }
 
-        /* Performance Frame with Lazy Core Container Hooks */
         .preview-frame-wrapper {
             position: relative;
             width: 100%;
@@ -448,7 +439,6 @@
             color: var(--bg-color);
         }
 
-        /* Interactive Terminal Pipeline Styles */
         .terminal-block {
             background-color: var(--terminal-bg);
             border: var(--border-thick);
@@ -532,8 +522,6 @@
             text-align: right;
             word-break: break-all;
         }
-
-        /* Tablet Layout Configurations (Max-Width: 1024px) */
         @media (max-width: 1024px) {
             .identity-split {
                 grid-template-columns: 1fr;
@@ -555,7 +543,6 @@
             }
         }
 
-        /* Mobile Layout Configurations (Max-Width: 600px) */
         @media (max-width: 600px) {
             .skills-grid {
                 grid-template-columns: 1fr;
@@ -601,10 +588,8 @@
         }
     </style>
     <script>
-        /* Strict Intercept Configuration: Absolute White/Light Interface Initial State */
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            // Ignores standard machine preferences to keep white baseline initialization intact
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -991,7 +976,6 @@
             menuTrigger.setAttribute('aria-expanded', isMenuCurrentlyActive ? 'true' : 'false');
             mainContent.setAttribute('aria-hidden', isMenuCurrentlyActive ? 'true' : 'false');
             
-            // Hardware-level accessibility trap
             mainContent.inert = isMenuCurrentlyActive;
         }
 
@@ -1008,7 +992,6 @@
             }
         }
 
-        /* Dynamic Component Injection Engine (Saves Application Initialization Overhead) */
         function initializeSandbox(id, targetUrl) {
             const containerPlaceholder = document.getElementById(`placeholder-${id}`);
             if (!containerPlaceholder) return;
@@ -1025,7 +1008,6 @@
             outerWrapper.appendChild(interactiveIframeNode);
         }
 
-        /* Interactive Matrix Terminal Interface System Script Hooks */
         const shellInputTarget = document.getElementById('terminalInputField');
         const displayLogBox = document.getElementById('terminalLog');
 
