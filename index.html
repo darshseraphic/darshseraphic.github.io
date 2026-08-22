@@ -551,6 +551,23 @@
             }
         }
 
+html {
+    /* Firefox & standard modern browsers */
+    scrollbar-width: thin;
+    scrollbar-color: #000000 transparent;
+}
+
+/* Chrome, Safari, and Edge (WebKit) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
         @media (max-width: 600px) {
             .skills-grid {
                 grid-template-columns: 1fr;
