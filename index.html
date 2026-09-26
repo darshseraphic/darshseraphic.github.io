@@ -1,24 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Darshan Jadhav // Systems Portfolio</title>
-    
-    <meta name="description" content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds.">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://darshseraphic.github.io/">
-    <meta property="og:title" content="Darshan Jadhav // Systems Portfolio">
-    <meta property="og:description" content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds.">
-    <meta property="og:image" content="https://darshseraphic.github.io/preview.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@800&display=swap" rel="stylesheet">
-    
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="favicon.jpg" rel="icon" type="image/jpeg"/>
+<title>Darshan Jadhav // Systems Portfolio</title>
+<meta content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://darshseraphic.github.io/" property="og:url"/>
+<meta content="Darshan Jadhav // Systems Portfolio" property="og:title"/>
+<meta content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds." property="og:description"/>
+<meta content="https://darshseraphic.github.io/preview.png" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet"/>
+<style>
         ::selection {
             background-color: rgba(128, 128, 128, 0.4);
         }
@@ -335,7 +332,7 @@
             transform: translate(-4px, -4px);
             box-shadow: var(--shadow-hover);
         }
-        
+
         .tag {
             display: inline-block;
             font-size: clamp(0.7rem, 1.5vw, 0.8rem);
@@ -439,7 +436,10 @@
             font-weight: 700;
             border-bottom: 2px solid var(--text-main);
             display: inline-block;
-            word-break: break-all;
+            white-space: nowrap;
+            word-break: normal;
+            overflow-wrap: normal;
+            max-width: 100%;
         }
 
         .app-link:hover {
@@ -593,6 +593,11 @@ html {
                 margin: 1.5rem 0;
             }
 
+            .app-link {
+                font-size: 0.68rem;
+                letter-spacing: -0.035em;
+            }
+
             :root {
                 --border-thick: 2.5px solid #000000;
                 --shadow-main: 6px 6px 0px #000000;
@@ -609,8 +614,84 @@ html {
                 box-shadow: 3px 3px 0px var(--text-main);
             }
         }
+
+        /* Project layout: desktop gets two real columns; mobile keeps the original flow. */
+        @media (min-width: 1025px) {
+            .project-block {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: clamp(2rem, 4vw, 4rem);
+                align-items: stretch;
+            }
+
+            .project-info {
+                grid-column: 1;
+                min-width: 0;
+            }
+
+            .project-block > .preview-frame-wrapper {
+                grid-column: 2;
+                grid-row: 1;
+                align-self: stretch;
+                width: 100%;
+                height: auto;
+                min-width: 0;
+                min-height: 560px;
+                margin: 0;
+                aspect-ratio: auto;
+            }
+
+            .project-block > .preview-frame-wrapper .preview-frame {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .project-block {
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Let the wrapped info behave exactly like the original flat child flow on mobile. */
+            .project-info {
+                display: contents;
+            }
+
+            .project-info > .tag {
+                order: 1;
+            }
+
+            .project-info > .tech-chips {
+                order: 2;
+            }
+
+            .project-info > h3 {
+                order: 3;
+            }
+
+            .project-block > .preview-frame-wrapper {
+                order: 4;
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+                margin: 2rem 0;
+                aspect-ratio: 16 / 10;
+            }
+
+            .project-info > p {
+                order: 5;
+            }
+
+            .project-info > .app-link-container {
+                order: 6;
+            }
+        }
+
     </style>
-    <script>
+<script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -620,380 +701,318 @@ html {
     </script>
 </head>
 <body>
-
-    <nav>
-        <div class="nav-container">
-            <div class="nav-left-group">
-                <a href="https://github.com/darshseraphic" target="_blank" aria-label="View GitHub Profile">
-                    <div class="pfp-placeholder"></div>
-                </a>
-                <button class="theme-toggle-btn" onclick="toggleTheme()">[ INVERT ]</button>
-            </div>
-            <button class="menu-trigger" id="menuTrigger" onclick="toggleMenu()" aria-haspopup="true" aria-expanded="false">[ MENU ]</button>
-        </div>
-    </nav>
-
-    <div class="fullscreen-menu" id="navMenu" aria-label="Main Navigation Context">
-        <button class="menu-close-btn" onclick="toggleMenu()">[ CLOSE ]</button>
-        <a href="#identity" onclick="toggleMenu()">Identity</a>
-        <a href="#experience" onclick="toggleMenu()">Performance</a>
-        <a href="#doingnow-build" onclick="toggleMenu()">Concurrency</a>
-        <a href="#rocen-build" onclick="toggleMenu()">Workspace</a>
-        <a href="#reacnar-build" onclick="toggleMenu()">Reacnar</a>
-        <a href="#exomic-build" onclick="toggleMenu()">Exomic</a>
-        <a href="#vidador-build" onclick="toggleMenu()">Vidador</a>
-        <a href="#luviasun-build" onclick="toggleMenu()">Luviasun</a>
-        <a href="#philosophy" onclick="toggleMenu()">Methodology</a>
-        <a href="#connect" onclick="toggleMenu()">Connect</a>
-    </div>
-
-    <main id="primaryContent" aria-hidden="false">
-        <section id="identity">
-            <div class="container">
-                <h2>01. Systems Engineer Profile</h2>
-                <h1>Darshan Jadhav <br><span class="hero-subtitle">Mobile & Desktop Architecture.</span></h1>
-                
-                <div class="identity-split">
-                    <div>
-                        <p class="lead-text">
+<nav>
+<div class="nav-container">
+<div class="nav-left-group">
+<a aria-label="View GitHub Profile" href="https://github.com/darshseraphic" target="_blank">
+<div class="pfp-placeholder"></div>
+</a>
+<button class="theme-toggle-btn" onclick="toggleTheme()">[ INVERT ]</button>
+</div>
+<button aria-expanded="false" aria-haspopup="true" class="menu-trigger" id="menuTrigger" onclick="toggleMenu()">[ MENU ]</button>
+</div>
+</nav>
+<div aria-label="Main Navigation Context" class="fullscreen-menu" id="navMenu">
+<button class="menu-close-btn" onclick="toggleMenu()">[ CLOSE ]</button>
+<a href="#identity" onclick="toggleMenu()">Identity</a>
+<a href="#experience" onclick="toggleMenu()">Performance</a>
+<a href="#doingnow-build" onclick="toggleMenu()">Concurrency</a>
+<a href="#rocen-build" onclick="toggleMenu()">Workspace</a>
+<a href="#reacnar-build" onclick="toggleMenu()">Reacnar</a>
+<a href="#exomic-build" onclick="toggleMenu()">Exomic</a>
+<a href="#vidador-build" onclick="toggleMenu()">Vidador</a>
+<a href="#luviasun-build" onclick="toggleMenu()">Luviasun</a>
+<a href="#philosophy" onclick="toggleMenu()">Methodology</a>
+<a href="#connect" onclick="toggleMenu()">Connect</a>
+</div>
+<main aria-hidden="false" id="primaryContent">
+<section id="identity">
+<div class="container">
+<h2>01. Systems Engineer Profile</h2>
+<h1>Darshan Jadhav <br/><span class="hero-subtitle">Mobile &amp; Desktop Architecture.</span></h1>
+<div class="identity-split">
+<div>
+<p class="lead-text">
                             Performance-driven engineer specializing in local-first systems architecture, highly reactive data channels, and hardware-backed cryptographic sandboxing environments.
                         </p>
-                        <p class="academic-box">
-                            <strong>Academic Framework:</strong> Third Year Candidate, Diploma in Computer Engineering & IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
+<p class="academic-box">
+<strong>Academic Framework:</strong> Third Year Candidate, Diploma in Computer Engineering &amp; IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
                         </p>
-                    </div>
-
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <h3>Cross-Platform</h3>
-                            <p>Building high-performance apps matching Dart framework kernels with low-level native subsystems (Kotlin, Java, C++).</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Local-First</h3>
-                            <p>Compiling clean, reactive relational databases with Drift (Moor), SQLite relational modeling, and Hive K-V pairs.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Device Security</h3>
-                            <p>Securing sandbox bounds with custom hardware ciphers via Android Keystore and iOS Keychain arrays.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>State Architecture</h3>
-                            <p>Managing structural event streams through continuous Riverpod graphs, BLoC nodes, and reactive data adaptations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <div class="container">
-                <h2>02. Engineering Production Record</h2>
-                <h1>Active Execution</h1>
-                
-                <p class="lead-text" style="margin-bottom: 3rem;">
+</div>
+<div class="skills-grid">
+<div class="skill-card">
+<h3>Cross-Platform</h3>
+<p>Building high-performance apps matching Dart framework kernels with low-level native subsystems (Kotlin, Java, C++).</p>
+</div>
+<div class="skill-card">
+<h3>Local-First</h3>
+<p>Compiling clean, reactive relational databases with Drift (Moor), SQLite relational modeling, and Hive K-V pairs.</p>
+</div>
+<div class="skill-card">
+<h3>Device Security</h3>
+<p>Securing sandbox bounds with custom hardware ciphers via Android Keystore and iOS Keychain arrays.</p>
+</div>
+<div class="skill-card">
+<h3>State Architecture</h3>
+<p>Managing structural event streams through continuous Riverpod graphs, BLoC nodes, and reactive data adaptations.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="experience">
+<div class="container">
+<h2>02. Engineering Production Record</h2>
+<h1>Active Execution</h1>
+<p class="lead-text" style="margin-bottom: 3rem;">
                     Currently executing application framework tuning parameters as an active engineer inside production source code trees.
                 </p>
-
-                <div class="exp-box">
-                    <h3 style="font-size: clamp(1.4rem, 3vw, 2.2rem);">Software Engineer Intern</h3>
-                    <p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
-                    <br>
-                    <p style="max-width: 100%;">• <strong>Query Optimization:</strong> Re-architected data sub-structures and stream parsing, removing redundant widget rendering loops by <strong>40%</strong> to enforce a locked 60/120 FPS runtime.</p>
-                    <p style="max-width: 100%;">• <strong>Native Channels:</strong> Integrated explicit platform bindings directly accessing background OS APIs for decoupled scheduling.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Deterministic Testing:</strong> Programmed strict automated integration suites resulting in <strong>90%+ test coverage</strong> across breaking external framework mutations.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="doingnow-build">
-            <div class="container">
-                <h2>03. Concurrent Peripheral Build</h2>
-                <h1>DOINGNOW</h1>
-                
-                <p>
+<div class="exp-box">
+<h3 style="font-size: clamp(1.4rem, 3vw, 2.2rem);">Software Engineer Intern</h3>
+<p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
+<br/>
+<p style="max-width: 100%;">• <strong>Query Optimization:</strong> Re-architected data sub-structures and stream parsing, removing redundant widget rendering loops by <strong>40%</strong> to enforce a locked 60/120 FPS runtime.</p>
+<p style="max-width: 100%;">• <strong>Native Channels:</strong> Integrated explicit platform bindings directly accessing background OS APIs for decoupled scheduling.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Deterministic Testing:</strong> Programmed strict automated integration suites resulting in <strong>90%+ test coverage</strong> across breaking external framework mutations.</p>
+</div>
+</div>
+</section>
+<section id="doingnow-build">
+<div class="container">
+<h2>03. Concurrent Peripheral Build</h2>
+<h1>DOINGNOW</h1>
+<p>
                     A Habit tracker app used to track the things many people forgot in there life. Those tiny habits are creating the future, Thats why i build this app.
                 </p>
-
-                <div class="project-block">
-                    <div class="tag">HW_SYS :: DOINGNOW</div>
-                    <div class="tech-chips">
-                        <span class="chip">Dart</span>
-                        <span class="chip">Flutter</span>
-                        <span class="chip">BLE Subsystem</span>
-                        <span class="chip">Hive DB</span>
-                    </div>
-                    <h3>Isolate Partitioning & Cache</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-doingnow">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('doingnow', 'https://doingnow.lovable.app')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
+<div class="project-block"><div class="project-info">
+<div class="tag">HW_SYS :: DOINGNOW</div>
+<div class="tech-chips">
+<span class="chip">Dart</span>
+<span class="chip">Flutter</span>
+<span class="chip">BLE Subsystem</span>
+<span class="chip">Hive DB</span>
+</div>
+<h3>Isolate Partitioning &amp; Cache</h3>
 
 <p style="max-width: 100%;">• <strong>Background Scheduling:</strong> Connected native alarm and reboot receivers directly to system logs to initialize exact background timing counters.</p>
 <p style="max-width: 100%; margin-bottom: 0;">• <strong>Isolate Concurrency:</strong> Structured a data processor delegating heavy notification and schedule transformations to dedicated background isolates.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://doingnow.lovable.app" target="_blank" class="app-link">https://doingnow.lovable.app/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/doingnow" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/doingnow/releases/download/v0.1.0/doingnow.apk" target="_blank" class="app-link">https://github.com/darshseraphic/doingnow/.../doingnow.apk</a></div>
-                    </div>
-                </div>
-
-                <h2 style="margin-top: 2rem;">Pipeline Execution Sequence</h2>
-                <div class="terminal-block">
-                    <div class="terminal-log" id="terminalLog">
-&gt; Spawned long-running background worker isolate (ID: 0x8F2B)
-&gt; Mapping high-speed binary adapters to memory cache (Hive O(1) mutations active)
-&gt; Parsing incoming peripheral packet transmission stream ... [Status: 100% Locked]
-&gt; Type 'help' or 'sysinfo' into environment matrix routing pipeline...</div>
-                    <div class="terminal-input-container">
-                        <span class="terminal-prompt">$</span>
-                        <input type="text" class="terminal-field" id="terminalInputField" placeholder="enter operational execution route..." autocomplete="off" aria-label="Terminal Input Arena">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="rocen-build">
-            <div class="container">
-                <h2>04. Production Interface Suite</h2>
-                <h1>ROCEN</h1>
-                
-                <p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://doingnow.lovable.app" target="_blank">doingnow.lovable.app</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/doingnow" target="_blank">github.com/darshseraphic/doingnow</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/doingnow/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/doingnow/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://doingnow.lovable.app" title="DOINGNOW Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="rocen-build">
+<div class="container">
+<h2>04. Production Interface Suite</h2>
+<h1>ROCEN</h1>
+<p>
                     A high-efficiency, zero-border application compilation canvas consolidating critical system subsystems into a streamlined, low-overhead UI layout engine.
                 </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">DEPLOY_CORE :: ROCEN</div>
+<div class="tech-chips">
+<span class="chip">Flutter</span>
+<span class="chip">Drift SQL</span>
+<span class="chip">Reactive Thread Loops</span>
+</div>
+<h3>Consolidated Workspace Pipeline</h3>
 
-                <div class="project-block">
-                    <div class="tag">DEPLOY_CORE :: ROCEN</div>
-                    <div class="tech-chips">
-                        <span class="chip">Flutter</span>
-                        <span class="chip">Drift SQL</span>
-                        <span class="chip">Reactive Thread Loops</span>
-                    </div>
-                    <h3>Consolidated Workspace Pipeline</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-rocen">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('rocen', 'https://rocen.lovable.app/')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
-
-                    <p style="max-width: 100%;">• <strong>Micro-Utility Thread Loops:</strong> Structured high-density cross-functional controls—spanning QuickNote text engines, synchronized storage clips, transactional checklists, and 365 environment configurations—into a single performance loop context.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Layout Optimization:</strong> Configured a responsive flexbox display matrix entirely devoid of structural padding clutter or heavy grid definitions to guarantee ultra-fast, zero-border frame parsing speeds.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://rocen.lovable.app/" target="_blank" class="app-link">https://rocen.lovable.app/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Rocen" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Rocen/releases/download/v0.1.0/Rocen.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Rocen/.../Rocen.apk</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="reacnar-build">
-            <div class="container">
-                <h2>05. TEST YOUR POTNENTIAL</h2>
-                <h1>REACNAR</h1>
-                
-                <p>
+<p style="max-width: 100%;">• <strong>Micro-Utility Thread Loops:</strong> Structured high-density cross-functional controls—spanning QuickNote text engines, synchronized storage clips, transactional checklists, and 365 environment configurations—into a single performance loop context.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Layout Optimization:</strong> Configured a responsive flexbox display matrix entirely devoid of structural padding clutter or heavy grid definitions to guarantee ultra-fast, zero-border frame parsing speeds.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://rocen.lovable.app/" target="_blank">rocen.lovable.app</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Rocen" target="_blank">github.com/darshseraphic/Rocen</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/Rocen/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/Rocen/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://rocen.lovable.app/" title="ROCEN Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="reacnar-build">
+<div class="container">
+<h2>05. TEST YOUR POTNENTIAL</h2>
+<h1>REACNAR</h1>
+<p>
                     A next-generation system framework currently undergoing active development and performance tuning. Architecture and feature-sets are actively compiling.
                 </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">WIP_NODE :: REACNAR</div>
+<div class="tech-chips">
+<span class="chip">Incubation Engine</span>
+<span class="chip">Decoupled Architecture</span>
+</div>
+<h3>Live Development Branch</h3>
 
-                <div class="project-block">
-                    <div class="tag">WIP_NODE :: REACNAR</div>
-                    <div class="tech-chips">
-                        <span class="chip">Incubation Engine</span>
-                        <span class="chip">Decoupled Architecture</span>
-                    </div>
-                    <h3>Live Development Branch</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-reacnar">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('reacnar', 'https://reacnar.lovable.app/')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
-
-                    <p style="max-width: 100%;">• <strong>System Status:</strong> Pre-release architecture. Currently stress-testing component mounting algorithms and rendering trees.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Development Objective:</strong> Establishing a high-density, fault-tolerant user environment engineered with decoupled event pipelines.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://reacnar.lovable.app/" target="_blank" class="app-link">https://reacnar.lovable.app/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Reacnar" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Reacnar/releases/download/v0.1.0/Reacnar.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Reacnar/.../Reacnar.apk</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="exomic-build">
-            <div class="container">
-                <h2>06. Ledger Engine Pipeline</h2>
-                <h1>EXOMIC</h1>
-                
-                <p>
+<p style="max-width: 100%;">• <strong>System Status:</strong> Pre-release architecture. Currently stress-testing component mounting algorithms and rendering trees.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Development Objective:</strong> Establishing a high-density, fault-tolerant user environment engineered with decoupled event pipelines.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://reacnar.lovable.app/" target="_blank">reacnar.lovable.app</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Reacnar" target="_blank">github.com/darshseraphic/Reacnar</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/Reacnar/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/Reacnar/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://reacnar.lovable.app/" title="REACNAR Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="exomic-build">
+<div class="container">
+<h2>06. Ledger Engine Pipeline</h2>
+<h1>EXOMIC</h1>
+<p>
                     A high-performance localized ledger environment designed for structural state recording and secure asset data pipelines.
                 </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">LEDGER_SYS :: EXOMIC</div>
+<div class="tech-chips">
+<span class="chip">State Mapping</span>
+<span class="chip">Deterministic Sandbox</span>
+<span class="chip">SQLite Engine</span>
+</div>
+<h3>State Synchronization Canvas</h3>
 
-                <div class="project-block">
-                    <div class="tag">LEDGER_SYS :: EXOMIC</div>
-                    <div class="tech-chips">
-                        <span class="chip">State Mapping</span>
-                        <span class="chip">Deterministic Sandbox</span>
-                        <span class="chip">SQLite Engine</span>
-                    </div>
-                    <h3>State Synchronization Canvas</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-exomic">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('exomic', 'https://darshseraphic.github.io/Exomic-web/')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
-
-                    <p style="max-width: 100%;">• <strong>Deterministic Rendering:</strong> Implemented explicit event streaming models ensuring real-time localized transactions process without interface stuttering or lagging frames.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Data Architecture:</strong> Programmed resilient schema matrices optimized for instantaneous local state tracking and isolated utility sandboxing.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://darshseraphic.github.io/Exomic-web/" target="_blank" class="app-link">https://darshseraphic.github.io/Exomic-web/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Exomic" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Exomic/releases/download/v0.1.0/Exomic.apk" target="_blank" class="app-link">https://github.com/darshseraphic/Exomic/.../Exomic.apk</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="vidador-build">
-            <div class="container">
-                <h2>03.5. Behavioral Quantizer</h2>
-                <h1>VIDADOR</h1>
-                
-                <p>
+<p style="max-width: 100%;">• <strong>Deterministic Rendering:</strong> Implemented explicit event streaming models ensuring real-time localized transactions process without interface stuttering or lagging frames.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Data Architecture:</strong> Programmed resilient schema matrices optimized for instantaneous local state tracking and isolated utility sandboxing.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Exomic/" target="_blank">darshseraphic.github.io/Exomic</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Exomic" target="_blank">github.com/darshseraphic/Exomic</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/Exomic/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/Exomic/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://darshseraphic.github.io/Exomic/" title="EXOMIC Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="vidador-build">
+<div class="container">
+<h2>03.5. Behavioral Quantizer</h2>
+<h1>VIDADOR</h1>
+<p>
                     An ultra-minimalist, high-contrast behavioral quantizer and metrics dashboard. It manages habits and routines through a strict, absolute binary design system.
                 </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">SYS_KERN :: VIDADOR</div>
+<div class="tech-chips">
+<span class="chip">Dart</span>
+<span class="chip">Flutter</span>
+<span class="chip">Hive</span>
+<span class="chip">Riverpod</span>
+</div>
+<h3>High-Contrast Metric Architecture</h3>
 
-                <div class="project-block">
-                    <div class="tag">SYS_KERN :: VIDADOR</div>
-                    <div class="tech-chips">
-                        <span class="chip">Dart</span>
-                        <span class="chip">Flutter</span>
-                        <span class="chip">Hive</span>
-                        <span class="chip">Riverpod</span>
-                    </div>
-                    <h3>High-Contrast Metric Architecture</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-vidador">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('vidador', 'https://darshseraphic.github.io/Vidador/')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
-
-                    <p style="max-width: 100%;">• <strong>Binary Design System:</strong> Composed entirely of absolute black and white high-contrast elements, stripping away all mid-tones and decorative visual clutter.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Structural Data Mapping:</strong> Tracks steps, hydration, sleep, and mindfulness through raw geometric matrices and terminal-style state inversion hooks.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://darshseraphic.github.io/Vidador/" target="_blank" class="app-link">https://darshseraphic.github.io/Vidador/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Vidador" target="_blank" class="app-link">https://github.com/darshseraphic/Vidador</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Vidador/releases/tag/v0.1.0" target="_blank" class="app-link">https://github.com/darshseraphic/Vidador/releases/tag/v0.1.0</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="luviasun-build">
-            <div class="container">
-                <h2>03.8. Monolithic Instrument Terminal</h2>
-                <h1>LUVIASUN</h1>
-                
-                <p>
+<p style="max-width: 100%;">• <strong>Binary Design System:</strong> Composed entirely of absolute black and white high-contrast elements, stripping away all mid-tones and decorative visual clutter.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Structural Data Mapping:</strong> Tracks steps, hydration, sleep, and mindfulness through raw geometric matrices and terminal-style state inversion hooks.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Vidador/" target="_blank">darshseraphic.github.io/Vidador</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Vidador" target="_blank">github.com/darshseraphic/Vidador</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/Vidador/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/Vidador/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://darshseraphic.github.io/Vidador/" title="VIDADOR Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="luviasun-build">
+<div class="container">
+<h2>03.8. Monolithic Instrument Terminal</h2>
+<h1>LUVIASUN</h1>
+<p>
                     LUVIASUN // A zero-curve, high-contrast brutalist console consolidating four core workflows: live environmental telemetry, gyro-stabilized spatial mapping, calendar cell allocation, and an arcade benchmark engine.
                 </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">INSTRUMENT_SYS :: LUVIASUN</div>
+<div class="tech-chips">
+<span class="chip">Dart</span>
+<span class="chip">Flutter</span>
+<span class="chip">Hive DB</span>
+<span class="chip">Riverpod Matrix</span>
+</div>
+<h3>LUVIASUN // ATMOSPHERIC SYSTEM MATRIX</h3>
 
-                <div class="project-block">
-                    <div class="tag">INSTRUMENT_SYS :: LUVIASUN</div>
-                    <div class="tech-chips">
-                        <span class="chip">Dart</span>
-                        <span class="chip">Flutter</span>
-                        <span class="chip">Hive DB</span>
-                        <span class="chip">Riverpod Matrix</span>
-                    </div>
-                    <h3>LUVIASUN // ATMOSPHERIC SYSTEM MATRIX</h3>
-
-                    <div class="preview-frame-wrapper">
-                        <div class="frame-placeholder" id="placeholder-luviasun">
-                            <p>Sandbox isolated to preserve initialization bandwidth performance.</p>
-                            <button class="boot-btn" onclick="initializeSandbox('luviasun', 'https://darshseraphic.github.io/Luviasun/')">[ BOOT CORE INTERFACE ]</button>
-                        </div>
-                    </div>
-
-                    <p style="max-width: 100%;">• <strong>OLED Power Minimization:</strong> Restricted color spaces explicitly to absolute binary fields (#000000 and #FFFFFF) to mitigate sub-pixel emission current draw during long logging streams.</p>
-                    <p style="max-width: 100%; margin-bottom: 0;">• <strong>Assetless Vector Painting:</strong> Removed external raster decoding layers by building explicit custom painters that draw directly on the runtime hardware canvas.</p>
-                    
-                    <div class="app-link-container">
-                        <div class="app-link-item">Website: <a href="https://darshseraphic.github.io/Luviasun/" target="_blank" class="app-link">https://darshseraphic.github.io/Luviasun/</a></div>
-                        <div class="app-link-item">Readme: <a href="https://github.com/darshseraphic/Luviasun" target="_blank" class="app-link">https://github.com/darshseraphic/Luviasun</a></div>
-                        <div class="app-link-item">Download: <a href="https://github.com/darshseraphic/Luviasun/releases/tag/v0.1.0" target="_blank" class="app-link">https://github.com/darshseraphic/Luviasun/releases/tag/v0.1.0</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="philosophy">
-            <div class="container">
-                <h2>07. Architectural Philosophy</h2>
-                <h1>Execution Standards</h1>
-                
-                <div class="philosophy-wrapper">
-                    <h3 style="margin-top: 1rem;">// Local-First Supremacy</h3>
-                    <p style="max-width: 100%;">I build under the assumption that external network connections are unstable. Processing pipelines and secure verification structures should execute locally on device storage.</p>
-                    
-                    <h3 style="margin-top: 3rem;">// Locked Rendering Frames</h3>
-                    <p style="max-width: 100%;">Uncontrolled component reconstruction is a bug. I maintain strict architectural parsing models so visual presentations process event mutations smoothly without losing frames.</p>
-                    
-                    <h3 style="margin-top: 3rem;">// Functional Minimalism</h3>
-                    <p style="max-width: 100%;">Interfaces should highlight information clearly. Visual styling uses strict alignment rules, quiet typographic scales, and high structural contrast limits.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="connect" class="section-connect">
-            <div class="container">
-                    <h2>08. Telemetry & Routing</h2>
-                    <h1>Connection Nodes</h1>
-                    <div class="links-wrapper">
-                        <a href="mailto:darsh.seraphic@gmail.com" class="clean-link-row" aria-label="Establish Direct Email Communication Route">
-                        <span>[ Direct Signal Form ]</span>
-                        <span class="arrow">darsh.seraphic@gmail.com →</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/darshseraphic" target="_blank" class="clean-link-row">
-                        <span>[ LinkedIn Network ]</span>
-                        <span class="arrow">/in/darshseraphic →</span>
-                    </a>
-                    <a href="https://github.com/darshseraphic" target="_blank" class="clean-link-row">
-                        <span>[ GitHub Repositories ]</span>
-                        <span class="arrow">/darshseraphic →</span>
-                    </a>
-                    <a href="https://lovable.dev/@darshseraphic" target="_blank" class="clean-link-row">
-                        <span>[ Lovable Node ]</span>
-                        <span class="arrow">@darshseraphic →</span>
-                    </a>
-                    <a href="https://discord.gg/zvs32RPb4" target="_blank" class="clean-link-row">
-                        <span>[ Discord Server ]</span>
-                        <span class="arrow">/D/Darshseraphic →</span>
-                    </a>
-                    <a href="https://gravatar.com/darshseraphic" target="_blank" class="clean-link-row">
-                        <span>[ Gravatar Profile ]</span>
-                        <span class="arrow">/Darshseraphic →</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-    <script>
+<p style="max-width: 100%;">• <strong>OLED Power Minimization:</strong> Restricted color spaces explicitly to absolute binary fields (#000000 and #FFFFFF) to mitigate sub-pixel emission current draw during long logging streams.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Assetless Vector Painting:</strong> Removed external raster decoding layers by building explicit custom painters that draw directly on the runtime hardware canvas.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Luviasun/" target="_blank">darshseraphic.github.io/Luviasun</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Luviasun" target="_blank">github.com/darshseraphic/Luviasun</a></div>
+<div class="app-link-item">Download: <a class="app-link" href="https://github.com/darshseraphic/Luviasun/releases/tag/v0.1.0" target="_blank">https://github.com/darshseraphic/Luviasun/releases</a></div>
+<div class="app-link-item">Discord: <a class="app-link" href="https://discord.gg/zvs32RPb4" target="_blank">discord.gg/zvs32RPb4</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://darshseraphic.github.io/Luviasun/" title="LUVIASUN Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="philosophy">
+<div class="container">
+<h2>07. Architectural Philosophy</h2>
+<h1>Execution Standards</h1>
+<div class="philosophy-wrapper">
+<h3 style="margin-top: 1rem;">// Local-First Supremacy</h3>
+<p style="max-width: 100%;">I build under the assumption that external network connections are unstable. Processing pipelines and secure verification structures should execute locally on device storage.</p>
+<h3 style="margin-top: 3rem;">// Locked Rendering Frames</h3>
+<p style="max-width: 100%;">Uncontrolled component reconstruction is a bug. I maintain strict architectural parsing models so visual presentations process event mutations smoothly without losing frames.</p>
+<h3 style="margin-top: 3rem;">// Functional Minimalism</h3>
+<p style="max-width: 100%;">Interfaces should highlight information clearly. Visual styling uses strict alignment rules, quiet typographic scales, and high structural contrast limits.</p>
+</div>
+</div>
+</section>
+<section class="section-connect" id="connect">
+<div class="container">
+<h2>08. Telemetry &amp; Routing</h2>
+<h1>Connection Nodes</h1>
+<div class="links-wrapper">
+<a aria-label="Establish Direct Email Communication Route" class="clean-link-row" href="mailto:darsh.seraphic@gmail.com">
+<span>[ Direct Signal Form ]</span>
+<span class="arrow">darsh.seraphic@gmail.com →</span>
+</a>
+<a class="clean-link-row" href="https://www.linkedin.com/in/darshseraphic" target="_blank">
+<span>[ LinkedIn Network ]</span>
+<span class="arrow">/in/darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://github.com/darshseraphic" target="_blank">
+<span>[ GitHub Repositories ]</span>
+<span class="arrow">/darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://lovable.dev/@darshseraphic" target="_blank">
+<span>[ Lovable Node ]</span>
+<span class="arrow">@darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://discord.gg/zvs32RPb4" target="_blank">
+<span>[ Discord Server ]</span>
+<span class="arrow">/D/Darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://gravatar.com/darshseraphic" target="_blank">
+<span>[ Gravatar Profile ]</span>
+<span class="arrow">/Darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://x.com/Darshseraphic" target="_blank">
+<span>[ X Network ]</span>
+<span class="arrow">@Darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://www.instagram.com/darshseraphic/" target="_blank">
+<span>[ Instagram Network ]</span>
+<span class="arrow">@darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://www.threads.com/@darshseraphic" target="_blank">
+<span>[ Threads Network ]</span>
+<span class="arrow">@darshseraphic →</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<script>
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
             const mainContent = document.getElementById('primaryContent');
@@ -1021,62 +1040,6 @@ html {
             }
         }
 
-        function initializeSandbox(id, targetUrl) {
-            const containerPlaceholder = document.getElementById(`placeholder-${id}`);
-            if (!containerPlaceholder) return;
-            
-            const outerWrapper = containerPlaceholder.parentElement;
-            outerWrapper.removeChild(containerPlaceholder);
-            
-            const interactiveIframeNode = document.createElement('iframe');
-            interactiveIframeNode.src = targetUrl;
-            interactiveIframeNode.className = 'preview-frame';
-            interactiveIframeNode.title = `${id} Sandbox Runtime Platform`;
-            interactiveIframeNode.setAttribute('loading', 'lazy');
-            
-            outerWrapper.appendChild(interactiveIframeNode);
-        }
-
-        const shellInputTarget = document.getElementById('terminalInputField');
-        const displayLogBox = document.getElementById('terminalLog');
-
-        if(shellInputTarget) {
-            shellInputTarget.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    const rawTextLine = this.value.trim();
-                    if (!rawTextLine) return;
-                    
-                    appendLineToTerminal(`\n$ ${rawTextLine}`);
-                    processTerminalInstruction(rawTextLine.toLowerCase());
-                    this.value = '';
-                }
-            });
-        }
-
-        function appendLineToTerminal(text) {
-            displayLogBox.textContent += text;
-            displayLogBox.scrollTop = displayLogBox.scrollHeight;
-        }
-
-        function processTerminalInstruction(command) {
-            switch(command) {
-                case 'help':
-                    appendLineToTerminal('\n> AVAILABLE COMMAND RUNTIMES:\n  [sysinfo] - Output architecture metrics.\n  [clear]   - Flush screen buffers.\n  [identity]- Teleport view frame to index context.');
-                    break;
-                case 'sysinfo':
-                    appendLineToTerminal('\n> ENVIRONMENT TELEMETRY MATRIX:\n  OS_KERNEL: Custom Dart Runtime Substructures\n  COMPILER: Flutter 2026 Core Infrastructure\n  LOCATION: Pune, India Node\n  STATUS: Active Intern Integration Pipeline');
-                    break;
-                case 'clear':
-                    displayLogBox.textContent = '> System buffers initialized cleanly.';
-                    break;
-                case 'identity':
-                    appendLineToTerminal('\n> Routing navigation trace view matrix...');
-                    window.location.hash = '#identity';
-                    break;
-                default:
-                    appendLineToTerminal(`\n> Diagnostic Error: Routing pathway "${command}" unrecognized. Try executing 'help'.`);
-            }
-        }
     </script>
 </body>
 </html>
