@@ -4,6 +4,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>
+        // A clean homepage visit starts at Identity. Keep intentional section
+        // anchors intact so direct links to a project continue to work.
+        (function () {
+            if (window.location.hash) {
+                return;
+            }
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.addEventListener('load', function () {
+                window.scrollTo(0, 0);
+            }, { once: true });
+        })();
+    </script>
 <link href="favicol.png" rel="icon" type="image/png"/>
 <title>Darshan Jadhav | Software Engineering Portfolio</title>
 <meta content="Portfolio of Darshan Jadhav, featuring mobile and desktop software projects, app performance improvements, and practical engineering experience." name="description"/>
@@ -827,7 +842,7 @@ html {
                 </p>
 <div class="exp-box">
 <h3 style="font-size: clamp(1.4rem, 3vw, 2.2rem);">Software Engineer Intern</h3>
-<p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
+<p><strong>Aytida Technologies</strong> — Pune, India | 25 June 2026 – 11 September 2026</p>
 <br/>
 <p style="max-width: 100%;">• <strong>Performance:</strong> Improved data handling and screen updates, reducing unnecessary widget rebuilds by <strong>40%</strong> and helping the app maintain smooth 60/120 FPS performance.</p>
 <p style="max-width: 100%;">• <strong>Native integrations:</strong> Connected app code to operating-system APIs to support background tasks and scheduling.</p>
@@ -1034,7 +1049,7 @@ html {
 <div class="app-link-item">Repository: <a class="app-link" href="https://github.com/darshseraphic/Studio" target="_blank" rel="noopener noreferrer">github.com/darshseraphic/Studio</a></div>
 </div>
 </div><div class="preview-frame-wrapper">
-<iframe class="preview-frame" loading="eager" src="https://darshseraphic.github.io/Studio/" title="STUDIO Website"></iframe>
+<iframe class="preview-frame" loading="lazy" src="https://darshseraphic.github.io/Studio/" title="STUDIO Website"></iframe>
 </div></div>
 </div>
 </section>
