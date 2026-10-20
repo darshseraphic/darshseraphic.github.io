@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="favicon.png" rel="icon" type="image/png"/>
-<title>Darshan Jadhav // Systems Portfolio</title>
-<meta content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds." name="description"/>
+<link href="favicol.png" rel="icon" type="image/png"/>
+<title>Darshan Jadhav | Software Engineering Portfolio</title>
+<meta content="Portfolio of Darshan Jadhav, featuring mobile and desktop software projects, app performance improvements, and practical engineering experience." name="description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://darshseraphic.github.io/" property="og:url"/>
-<meta content="Darshan Jadhav // Systems Portfolio" property="og:title"/>
-<meta content="Professional engineering interface showcasing mobile systems architecture, local-first workflows, and software builds." property="og:description"/>
+<meta content="Darshan Jadhav | Software Engineering Portfolio" property="og:title"/>
+<meta content="Portfolio of Darshan Jadhav, featuring mobile and desktop software projects, app performance improvements, and practical engineering experience." property="og:description"/>
 <meta content="https://darshseraphic.github.io/preview.png" property="og:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -26,7 +26,8 @@
 
         :root {
 
-            --bg-color: #F5F5F2; 
+            --bg-color: #F5F5F2;
+            --pfp-outline: #000000;
             --text-main: #000000;
             --text-muted: #555555;
             --border-color: #000000;
@@ -42,6 +43,7 @@
 
         [data-theme="dark"] {
             --bg-color: #0B0B0B;
+            --pfp-outline: #FFFFFF;
             --text-main: #F5F5F2;
             --text-muted: #8A8A8A;
             --border-color: #F5F5F2;
@@ -195,8 +197,10 @@
             width: 36px;
             height: 36px;
             background-color: var(--card-bg);
-            border: var(--border-thick);
-            background-image: url('pfp.jpg'); 
+            border: none;
+            outline: 3px solid var(--pfp-outline);
+            outline-offset: 2px;
+            background-image: url('pfp.jpg');
             background-size: cover;
             background-position: center;
             cursor: pointer;
@@ -239,18 +243,30 @@
             left: 0;
             width: 100%;
             height: 100vh;
+            min-height: 100vh;
             background: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding-left: clamp(1.2rem, 8vw, 10%);
-            padding-right: 1.2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            align-content: center;
+            align-items: center;
+            gap: clamp(2rem, 8vw, 8rem);
+            padding: 5rem clamp(1.2rem, 8vw, 10%);
             opacity: 0;
             visibility: hidden;
             z-index: 1001;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
             overflow-y: auto;
+        }
+
+        .menu-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .menu-projects {
+            align-items: flex-end;
         }
 
         .fullscreen-menu.active {
@@ -271,19 +287,25 @@
             font-family: var(--font-display);
             color: var(--text-muted);
             text-decoration: none;
-            font-size: clamp(1.5rem, 4.2vw + 0.3rem, 3.8rem);
+            font-size: clamp(1.5rem, calc(3.3vw - 4px), 3.15rem);
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: -0.015em;
             line-height: 1.2;
             margin: 0.3rem 0;
             transition: transform 0.2s ease, color 0.15s ease;
-            word-break: keep-all; 
+            word-break: keep-all;
             overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .fullscreen-menu a:hover {
             color: var(--text-main);
             transform: translateX(12px);
+        }
+
+        .menu-projects a:hover {
+            transform: translateX(-12px);
         }
 
         .identity-split {
@@ -567,6 +589,32 @@ html {
 }
 
         @media (max-width: 600px) {
+            .fullscreen-menu {
+                grid-template-columns: minmax(0, 1fr);
+                align-content: start;
+                align-items: stretch;
+                gap: 1.5rem;
+                padding: 5rem 1.2rem 2rem;
+            }
+
+            .menu-column,
+            .menu-projects {
+                align-items: center;
+                width: 100%;
+            }
+
+            .fullscreen-menu a {
+                max-width: 100%;
+                text-align: center;
+                font-size: clamp(1.35rem, 5.5vw, 2rem);
+                margin: 0.15rem 0;
+            }
+
+            .fullscreen-menu a:hover,
+            .menu-projects a:hover {
+                transform: none;
+            }
+
             .skills-grid {
                 grid-template-columns: 1fr;
                 gap: 1.2rem;
@@ -694,7 +742,9 @@ html {
 <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
+            if (savedTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
         })();
@@ -705,56 +755,64 @@ html {
 <div class="nav-container">
 <div class="nav-left-group">
 <a aria-label="View GitHub Profile" href="https://github.com/darshseraphic" target="_blank">
-<div class="pfp-placeholder"></div>
+<div aria-hidden="true" class="pfp-placeholder"></div>
 </a>
 <button class="theme-toggle-btn" onclick="toggleTheme()">[ INVERT ]</button>
 </div>
 <button aria-expanded="false" aria-haspopup="true" class="menu-trigger" id="menuTrigger" onclick="toggleMenu()">[ MENU ]</button>
 </div>
 </nav>
-<div aria-label="Main Navigation Context" class="fullscreen-menu" id="navMenu">
+<div aria-label="Main Navigation" class="fullscreen-menu" id="navMenu" role="navigation">
 <button class="menu-close-btn" onclick="toggleMenu()">[ CLOSE ]</button>
+<div aria-label="Portfolio sections and profiles" class="menu-column menu-sections">
 <a href="#identity" onclick="toggleMenu()">Identity</a>
 <a href="#experience" onclick="toggleMenu()">Performance</a>
-<a href="#doingnow-build" onclick="toggleMenu()">Concurrency</a>
-<a href="#rocen-build" onclick="toggleMenu()">Workspace</a>
+<a href="#philosophy" onclick="toggleMenu()">Methodology</a>
+<a href="#doingnow-build" onclick="toggleMenu()">Execution</a>
+<a href="#connect" onclick="toggleMenu()">Connect</a>
+<a href="https://www.linkedin.com/in/darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">LinkedIn</a>
+<a href="https://github.com/darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">GitHub</a>
+</div>
+<div aria-label="Projects" class="menu-column menu-projects">
+<a href="#doingnow-build" onclick="toggleMenu()">Doingnow</a>
+<a href="#rocen-build" onclick="toggleMenu()">Rocen</a>
 <a href="#reacnar-build" onclick="toggleMenu()">Reacnar</a>
 <a href="#exomic-build" onclick="toggleMenu()">Exomic</a>
 <a href="#vidador-build" onclick="toggleMenu()">Vidador</a>
 <a href="#luviasun-build" onclick="toggleMenu()">Luviasun</a>
-<a href="#philosophy" onclick="toggleMenu()">Methodology</a>
-<a href="#connect" onclick="toggleMenu()">Connect</a>
+<a href="#studio-build" onclick="toggleMenu()">Studio</a>
+</div>
 </div>
 <main aria-hidden="false" id="primaryContent">
 <section id="identity">
 <div class="container">
-<h2>01. Systems Engineer Profile</h2>
-<h1>Darshan Jadhav <br/><span class="hero-subtitle">Mobile &amp; Desktop Architecture.</span></h1>
+<h2>01. Technical Profile</h2>
+<h1>Darshan Jadhav <br/><span class="hero-subtitle">Mobile &amp; Desktop Software Engineering.</span></h1>
 <div class="identity-split">
 <div>
 <p class="lead-text">
-                            Performance-driven engineer specializing in local-first systems architecture, highly reactive data channels, and hardware-backed cryptographic sandboxing environments.
+                            I build reliable mobile and desktop applications, with a focus on performance, offline support, clear data handling, and device security.
                         </p>
 <p class="academic-box">
-<strong>Academic Framework:</strong> Third Year Candidate, Diploma in Computer Engineering &amp; IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
+<strong>Education:</strong> Third-year Diploma student in Computer Engineering &amp; IoT at <em>Cusrow Wadia Institute of Technology</em>, Pune.
                         </p>
 </div>
 <div class="skills-grid">
 <div class="skill-card">
 <h3>Cross-Platform</h3>
-<p>Building high-performance apps matching Dart framework kernels with low-level native subsystems (Kotlin, Java, C++).</p>
+<p>Building cross-platform apps with Dart and Flutter, with native integrations in Kotlin, Java, and C++.</p>
 </div>
 <div class="skill-card">
 <h3>Local-First</h3>
-<p>Compiling clean, reactive relational databases with Drift (Moor), SQLite relational modeling, and Hive K-V pairs.</p>
+<p>Designing apps that store data on the device and support offline use with Drift, SQLite, and Hive.</p>
 </div>
 <div class="skill-card">
 <h3>Device Security</h3>
-<p>Securing sandbox bounds with custom hardware ciphers via Android Keystore and iOS Keychain arrays.</p>
+<p>Protecting sensitive device data and keys with Android Keystore and iOS Keychain.</p>
 </div>
 <div class="skill-card">
 <h3>State Architecture</h3>
-<p>Managing structural event streams through continuous Riverpod graphs, BLoC nodes, and reactive data adaptations.</p>
+<p>Managing app state and screen updates with Riverpod, BLoC, and reactive programming.</p>
 </div>
 </div>
 </div>
@@ -762,40 +820,40 @@ html {
 </section>
 <section id="experience">
 <div class="container">
-<h2>02. Engineering Production Record</h2>
-<h1>Active Execution</h1>
+<h2>02. Work Experience</h2>
+<h1>Engineering Experience</h1>
 <p class="lead-text" style="margin-bottom: 3rem;">
-                    Currently executing application framework tuning parameters as an active engineer inside production source code trees.
+                    I work on improving application performance, connecting apps to operating-system features, and maintaining automated tests.
                 </p>
 <div class="exp-box">
 <h3 style="font-size: clamp(1.4rem, 3vw, 2.2rem);">Software Engineer Intern</h3>
 <p><strong>Aytida Technologies</strong> — Pune, India | June 2026 – Present</p>
 <br/>
-<p style="max-width: 100%;">• <strong>Query Optimization:</strong> Re-architected data sub-structures and stream parsing, removing redundant widget rendering loops by <strong>40%</strong> to enforce a locked 60/120 FPS runtime.</p>
-<p style="max-width: 100%;">• <strong>Native Channels:</strong> Integrated explicit platform bindings directly accessing background OS APIs for decoupled scheduling.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Deterministic Testing:</strong> Programmed strict automated integration suites resulting in <strong>90%+ test coverage</strong> across breaking external framework mutations.</p>
+<p style="max-width: 100%;">• <strong>Performance:</strong> Improved data handling and screen updates, reducing unnecessary widget rebuilds by <strong>40%</strong> and helping the app maintain smooth 60/120 FPS performance.</p>
+<p style="max-width: 100%;">• <strong>Native integrations:</strong> Connected app code to operating-system APIs to support background tasks and scheduling.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Automated testing:</strong> Built integration tests that achieved <strong>90%+ test coverage</strong> and help catch issues when external frameworks change.</p>
 </div>
 </div>
 </section>
 <section id="doingnow-build">
 <div class="container">
-<h2>03. Concurrent Peripheral Build</h2>
+<h2>03. Project: Habit Tracker</h2>
 <h1>DOINGNOW</h1>
 <p>
-                    A Habit tracker app used to track the things many people forgot in there life. Those tiny habits are creating the future, Thats why i build this app.
+                    DOINGNOW is a habit tracker that helps people build small, consistent routines and remember the everyday tasks that matter.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">HW_SYS :: DOINGNOW</div>
+<div class="tag">PROJECT :: DOINGNOW</div>
 <div class="tech-chips">
 <span class="chip">Dart</span>
 <span class="chip">Flutter</span>
-<span class="chip">BLE Subsystem</span>
-<span class="chip">Hive DB</span>
+<span class="chip">Bluetooth LE</span>
+<span class="chip">Hive Database</span>
 </div>
-<h3>Isolate Partitioning &amp; Cache</h3>
+<h3>Reliable Background Reminders</h3>
 
-<p style="max-width: 100%;">• <strong>Background Scheduling:</strong> Connected native alarm and reboot receivers directly to system logs to initialize exact background timing counters.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Isolate Concurrency:</strong> Structured a data processor delegating heavy notification and schedule transformations to dedicated background isolates.</p>
+<p style="max-width: 100%;">• <strong>Background reminders:</strong> Integrated native alarm and reboot handling to help reminders run on schedule.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Background processing:</strong> Moved heavier notification and scheduling work to background isolates to keep the app responsive.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://doingnow.lovable.app" target="_blank">doingnow.lovable.app</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/doingnow" target="_blank">github.com/darshseraphic/doingnow</a></div>
@@ -809,22 +867,22 @@ html {
 </section>
 <section id="rocen-build">
 <div class="container">
-<h2>04. Production Interface Suite</h2>
+<h2>04. Project: Productivity Workspace</h2>
 <h1>ROCEN</h1>
 <p>
-                    A high-efficiency, zero-border application compilation canvas consolidating critical system subsystems into a streamlined, low-overhead UI layout engine.
+                    ROCEN brings everyday productivity tools into one workspace, with a lightweight interface designed to stay responsive and easy to use.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">DEPLOY_CORE :: ROCEN</div>
+<div class="tag">PROJECT :: ROCEN</div>
 <div class="tech-chips">
 <span class="chip">Flutter</span>
 <span class="chip">Drift SQL</span>
-<span class="chip">Reactive Thread Loops</span>
+<span class="chip">Reactive UI</span>
 </div>
-<h3>Consolidated Workspace Pipeline</h3>
+<h3>Everyday Tools in One Workspace</h3>
 
-<p style="max-width: 100%;">• <strong>Micro-Utility Thread Loops:</strong> Structured high-density cross-functional controls—spanning QuickNote text engines, synchronized storage clips, transactional checklists, and 365 environment configurations—into a single performance loop context.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Layout Optimization:</strong> Configured a responsive flexbox display matrix entirely devoid of structural padding clutter or heavy grid definitions to guarantee ultra-fast, zero-border frame parsing speeds.</p>
+<p style="max-width: 100%;">• <strong>Everyday tools:</strong> Brings together QuickNote, a synced clipboard, checklists, and 365-day environment settings in one place.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Responsive layout:</strong> Uses flexible layouts and avoids unnecessary complexity to keep the interface clear and quick to navigate.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://rocen.lovable.app/" target="_blank">rocen.lovable.app</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Rocen" target="_blank">github.com/darshseraphic/Rocen</a></div>
@@ -838,21 +896,21 @@ html {
 </section>
 <section id="reacnar-build">
 <div class="container">
-<h2>05. TEST YOUR POTNENTIAL</h2>
+<h2>05. Project: System Framework</h2>
 <h1>REACNAR</h1>
 <p>
-                    A next-generation system framework currently undergoing active development and performance tuning. Architecture and feature-sets are actively compiling.
+                    REACNAR is a system framework in active development, focused on building a responsive and reliable user experience.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">WIP_NODE :: REACNAR</div>
+<div class="tag">STATUS :: IN DEVELOPMENT</div>
 <div class="tech-chips">
-<span class="chip">Incubation Engine</span>
-<span class="chip">Decoupled Architecture</span>
+<span class="chip">In Development</span>
+<span class="chip">Modular Architecture</span>
 </div>
-<h3>Live Development Branch</h3>
+<h3>Development Status</h3>
 
-<p style="max-width: 100%;">• <strong>System Status:</strong> Pre-release architecture. Currently stress-testing component mounting algorithms and rendering trees.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Development Objective:</strong> Establishing a high-density, fault-tolerant user environment engineered with decoupled event pipelines.</p>
+<p style="max-width: 100%;">• <strong>Current status:</strong> Early-release project. I am testing how components load and how screens render.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Goal:</strong> Build a reliable interface where separate parts communicate clearly and handle events without disrupting the user experience.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://reacnar.lovable.app/" target="_blank">reacnar.lovable.app</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Reacnar" target="_blank">github.com/darshseraphic/Reacnar</a></div>
@@ -866,22 +924,22 @@ html {
 </section>
 <section id="exomic-build">
 <div class="container">
-<h2>06. Ledger Engine Pipeline</h2>
+<h2>06. Project: Local Ledger</h2>
 <h1>EXOMIC</h1>
 <p>
-                    A high-performance localized ledger environment designed for structural state recording and secure asset data pipelines.
+                    EXOMIC is a local ledger project designed to record transactions and manage structured data securely on the device.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">LEDGER_SYS :: EXOMIC</div>
+<div class="tag">PROJECT :: EXOMIC</div>
 <div class="tech-chips">
-<span class="chip">State Mapping</span>
-<span class="chip">Deterministic Sandbox</span>
-<span class="chip">SQLite Engine</span>
+<span class="chip">Data Tracking</span>
+<span class="chip">Local Processing</span>
+<span class="chip">SQLite</span>
 </div>
-<h3>State Synchronization Canvas</h3>
+<h3>Local Data and Smooth Updates</h3>
 
-<p style="max-width: 100%;">• <strong>Deterministic Rendering:</strong> Implemented explicit event streaming models ensuring real-time localized transactions process without interface stuttering or lagging frames.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Data Architecture:</strong> Programmed resilient schema matrices optimized for instantaneous local state tracking and isolated utility sandboxing.</p>
+<p style="max-width: 100%;">• <strong>Smooth updates:</strong> Designed screen updates that reflect local transactions as data changes, without making the interface stutter or lag.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Local data:</strong> Built structured SQLite storage to track app state and keep utility data separated.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Exomic/" target="_blank">darshseraphic.github.io/Exomic</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Exomic" target="_blank">github.com/darshseraphic/Exomic</a></div>
@@ -895,23 +953,23 @@ html {
 </section>
 <section id="vidador-build">
 <div class="container">
-<h2>03.5. Behavioral Quantizer</h2>
+<h2>07. Project: Habit &amp; Wellness Dashboard</h2>
 <h1>VIDADOR</h1>
 <p>
-                    An ultra-minimalist, high-contrast behavioral quantizer and metrics dashboard. It manages habits and routines through a strict, absolute binary design system.
+                    VIDADOR is a simple habit and wellness dashboard for tracking daily activity and routines.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">SYS_KERN :: VIDADOR</div>
+<div class="tag">PROJECT :: VIDADOR</div>
 <div class="tech-chips">
 <span class="chip">Dart</span>
 <span class="chip">Flutter</span>
 <span class="chip">Hive</span>
 <span class="chip">Riverpod</span>
 </div>
-<h3>High-Contrast Metric Architecture</h3>
+<h3>Habit and Wellness Tracking</h3>
 
-<p style="max-width: 100%;">• <strong>Binary Design System:</strong> Composed entirely of absolute black and white high-contrast elements, stripping away all mid-tones and decorative visual clutter.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Structural Data Mapping:</strong> Tracks steps, hydration, sleep, and mindfulness through raw geometric matrices and terminal-style state inversion hooks.</p>
+<p style="max-width: 100%;">• <strong>Visual design:</strong> Uses a clear black-and-white interface with minimal visual clutter.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Daily tracking:</strong> Supports tracking steps, water intake, sleep, and mindfulness in one dashboard.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Vidador/" target="_blank">darshseraphic.github.io/Vidador</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Vidador" target="_blank">github.com/darshseraphic/Vidador</a></div>
@@ -925,23 +983,23 @@ html {
 </section>
 <section id="luviasun-build">
 <div class="container">
-<h2>03.8. Monolithic Instrument Terminal</h2>
+<h2>08. Project: Utility Dashboard</h2>
 <h1>LUVIASUN</h1>
 <p>
-                    LUVIASUN // A zero-curve, high-contrast brutalist console consolidating four core workflows: live environmental telemetry, gyro-stabilized spatial mapping, calendar cell allocation, and an arcade benchmark engine.
+                    LUVIASUN combines four tools in one app: live environmental data, motion-based spatial mapping, calendar planning, and an arcade-style performance test.
                 </p>
 <div class="project-block"><div class="project-info">
-<div class="tag">INSTRUMENT_SYS :: LUVIASUN</div>
+<div class="tag">PROJECT :: LUVIASUN</div>
 <div class="tech-chips">
 <span class="chip">Dart</span>
 <span class="chip">Flutter</span>
-<span class="chip">Hive DB</span>
-<span class="chip">Riverpod Matrix</span>
+<span class="chip">Hive Database</span>
+<span class="chip">Riverpod</span>
 </div>
-<h3>LUVIASUN // ATMOSPHERIC SYSTEM MATRIX</h3>
+<h3>Four Utilities in One App</h3>
 
-<p style="max-width: 100%;">• <strong>OLED Power Minimization:</strong> Restricted color spaces explicitly to absolute binary fields (#000000 and #FFFFFF) to mitigate sub-pixel emission current draw during long logging streams.</p>
-<p style="max-width: 100%; margin-bottom: 0;">• <strong>Assetless Vector Painting:</strong> Removed external raster decoding layers by building explicit custom painters that draw directly on the runtime hardware canvas.</p>
+<p style="max-width: 100%;">• <strong>OLED-friendly display:</strong> Uses a strict black-and-white palette designed to reduce unnecessary screen power use during longer sessions.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Custom graphics:</strong> Draws visuals with Flutter's custom painting tools instead of loading external image assets.</p>
 <div class="app-link-container">
 <div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Luviasun/" target="_blank">darshseraphic.github.io/Luviasun</a></div>
 <div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Luviasun" target="_blank">github.com/darshseraphic/Luviasun</a></div>
@@ -953,24 +1011,51 @@ html {
 </div></div>
 </div>
 </section>
+<section id="studio-build">
+<div class="container">
+<h2>09. Project: Interactive Terminal Workspace</h2>
+<h1>STUDIO</h1>
+<p>
+                    STUDIO is a browser-based workspace that brings a terminal-style interface and modular tools together, including code editing and GitHub-connected workflows.
+                </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">PROJECT :: STUDIO</div>
+<div class="tech-chips">
+<span class="chip">HTML</span>
+<span class="chip">CSS</span>
+<span class="chip">JavaScript</span>
+<span class="chip">GitHub API</span>
+</div>
+<h3>A Modular Web Workspace</h3>
+<p style="max-width: 100%;">• <strong>Integrated tools:</strong> Brings utilities such as a code editor, calculator, and GitHub tools into one browser workspace.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Safer previews:</strong> Uses sandboxed previews and controlled network access when working with repository content.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Studio/" target="_blank" rel="noopener noreferrer">darshseraphic.github.io/Studio</a></div>
+<div class="app-link-item">Repository: <a class="app-link" href="https://github.com/darshseraphic/Studio" target="_blank" rel="noopener noreferrer">github.com/darshseraphic/Studio</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="eager" src="https://darshseraphic.github.io/Studio/" title="STUDIO Website"></iframe>
+</div></div>
+</div>
+</section>
 <section id="philosophy">
 <div class="container">
-<h2>07. Architectural Philosophy</h2>
-<h1>Execution Standards</h1>
+<h2>10. Engineering Approach</h2>
+<h1>How I Build Software</h1>
 <div class="philosophy-wrapper">
-<h3 style="margin-top: 1rem;">// Local-First Supremacy</h3>
-<p style="max-width: 100%;">I build under the assumption that external network connections are unstable. Processing pipelines and secure verification structures should execute locally on device storage.</p>
-<h3 style="margin-top: 3rem;">// Locked Rendering Frames</h3>
-<p style="max-width: 100%;">Uncontrolled component reconstruction is a bug. I maintain strict architectural parsing models so visual presentations process event mutations smoothly without losing frames.</p>
-<h3 style="margin-top: 3rem;">// Functional Minimalism</h3>
-<p style="max-width: 100%;">Interfaces should highlight information clearly. Visual styling uses strict alignment rules, quiet typographic scales, and high structural contrast limits.</p>
+<h3 style="margin-top: 1rem;">// Offline-First</h3>
+<p style="max-width: 100%;">I design core features to work when internet access is weak or unavailable, keeping relevant data on the device where appropriate.</p>
+<h3 style="margin-top: 3rem;">// Smooth Performance</h3>
+<p style="max-width: 100%;">I focus on predictable screen updates and responsive interactions to reduce unnecessary work and dropped frames.</p>
+<h3 style="margin-top: 3rem;">// Clear Interfaces</h3>
+<p style="max-width: 100%;">I keep interfaces easy to understand through consistent spacing, readable typography, and strong contrast.</p>
 </div>
 </div>
 </section>
 <section class="section-connect" id="connect">
 <div class="container">
-<h2>08. Telemetry &amp; Routing</h2>
-<h1>Connection Nodes</h1>
+<h2>11. Contact &amp; Profiles</h2>
+<h1>Let's Connect</h1>
 <div class="links-wrapper">
 <a class="clean-link-row" href="https://www.linkedin.com/in/darshseraphic" target="_blank">
 <span>[ LinkedIn Network ]</span>
