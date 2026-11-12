@@ -239,7 +239,7 @@
             white-space: nowrap;
         }
 
-        .theme-toggle-btn, .menu-trigger {
+        .theme-toggle-btn, .menu-trigger, .menu-close-btn {
             padding: 8px 14px;
             border: var(--border-thick);
             background: var(--card-bg);
@@ -247,7 +247,7 @@
             transition: all 0.1s ease;
         }
 
-        .theme-toggle-btn:hover, .menu-trigger:hover {
+        .theme-toggle-btn:hover, .menu-trigger:hover, .menu-close-btn:hover {
             transform: translate(-2px, -2px);
             box-shadow: 6px 6px 0px var(--text-main);
         }
@@ -296,18 +296,20 @@
             padding: 8px 14px;
             border: var(--border-thick);
             background: var(--card-bg);
+            box-shadow: 4px 4px 0px var(--text-main);
+            transition: all 0.1s ease;
         }
 
         .fullscreen-menu a {
             font-family: var(--font-display);
             color: var(--text-muted);
             text-decoration: none;
-            font-size: clamp(1.5rem, calc(3.3vw - 4px), 3.15rem);
+            font-size: clamp(1.2rem, calc(2.4vw - 2px), 2.25rem);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.015em;
-            line-height: 1.2;
-            margin: 0.3rem 0;
+            line-height: 1.12;
+            margin: 0.18rem 0;
             transition: transform 0.2s ease, color 0.15s ease;
             word-break: keep-all;
             overflow-wrap: break-word;
@@ -673,7 +675,7 @@ html {
                 --shadow-hover: 8px 8px 0px #F5F5F2;
             }
 
-            .theme-toggle-btn, .menu-trigger {
+            .theme-toggle-btn, .menu-trigger, .menu-close-btn {
                 box-shadow: 3px 3px 0px var(--text-main);
             }
         }
@@ -780,6 +782,7 @@ html {
 <div aria-label="Main Navigation" class="fullscreen-menu" id="navMenu" role="navigation">
 <button class="menu-close-btn" onclick="toggleMenu()">[ CLOSE ]</button>
 <div aria-label="Portfolio sections and profiles" class="menu-column menu-sections">
+<a href="https://x.com/Darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">X</a>
 <a href="#identity" onclick="toggleMenu()">Identity</a>
 <a href="#experience" onclick="toggleMenu()">Performance</a>
 <a href="#philosophy" onclick="toggleMenu()">Methodology</a>
@@ -787,6 +790,11 @@ html {
 <a href="#connect" onclick="toggleMenu()">Connect</a>
 <a href="https://www.linkedin.com/in/darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">LinkedIn</a>
 <a href="https://github.com/darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">GitHub</a>
+<a href="https://www.instagram.com/darshseraphic/" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">Instagram</a>
+<a href="https://www.threads.com/@darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">Threads</a>
+<a href="https://discord.gg/zvs32RPb4" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">Discord</a>
+<a href="https://lovable.dev/@darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">Lovable</a>
+<a href="https://gravatar.com/darshseraphic" rel="noopener noreferrer" target="_blank" onclick="toggleMenu()">Gravatar</a>
 </div>
 <div aria-label="Projects" class="menu-column menu-projects">
 <a href="#doingnow-build" onclick="toggleMenu()">Doingnow</a>
@@ -800,6 +808,8 @@ html {
 <a href="#pemintos-build" onclick="toggleMenu()">Pemintos</a>
 <a href="#climano-build" onclick="toggleMenu()">Climano</a>
 <a href="#casidora-build" onclick="toggleMenu()">Casidora</a>
+<a href="#mikveh-build" onclick="toggleMenu()">Mikveh</a>
+<a href="#gitamrta-build" onclick="toggleMenu()">Gitamrta</a>
 </div>
 </div>
 <main aria-hidden="false" id="primaryContent">
@@ -1171,9 +1181,69 @@ html {
 </div></div>
 </div>
 </section>
+<section id="mikveh-build">
+<div class="container">
+<h2>14. Project: Bible Verse Finder</h2>
+<h1>MIKVEH</h1>
+<p>
+                    MIKVEH is a focused Bible verse finder for Google Chrome. It displays a random Bible verse when opened and lets users search for passages by reference, copy verses with their references, and choose a System, Light, or Dark appearance.
+                </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">PROJECT :: MIKVEH</div>
+<div class="tech-chips">
+<span class="chip">JavaScript</span>
+<span class="chip">Chrome Extension</span>
+<span class="chip">Manifest V3</span>
+<span class="chip">World English Bible</span>
+<span class="chip">Bible API</span>
+</div>
+<h3>Random Verses and Passage Lookup</h3>
+<p style="max-width: 100%;">• <strong>Verse discovery:</strong> Requests a random World English Bible verse when the popup opens, with an option to load another verse.</p>
+<p style="max-width: 100%;">• <strong>Reference lookup and themes:</strong> Searches for passages by book, chapter, and verse; copies the passage with its reference; and remembers the selected System, Light, or Dark theme locally.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Verse service:</strong> Retrieves verse text from bible-api.com, so an internet connection is required for random verses and passage searches.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Mikveh/" target="_blank" rel="noopener noreferrer">darshseraphic.github.io/Mikveh</a></div>
+<div class="app-link-item">Repository: <a class="app-link" href="https://github.com/darshseraphic/Mikveh" target="_blank" rel="noopener noreferrer">github.com/darshseraphic/Mikveh</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Mikveh#readme" target="_blank" rel="noopener noreferrer">Mikveh documentation</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="lazy" src="https://darshseraphic.github.io/Mikveh/" title="MIKVEH Website"></iframe>
+</div></div>
+</div>
+</section>
+<section id="gitamrta-build">
+<div class="container">
+<h2>15. Project: Bhagavad Gita Reader</h2>
+<h1>GITAMRTA</h1>
+<p>
+                    GITAMRTA is a lightweight Chrome extension for reading the Bhagavad Gita one shloka at a time. It opens a verse for reflection, supports direct chapter-and-verse lookup, and presents Sanskrit, Roman transliteration, English translation, and Hindi commentary when those fields are available from the scripture service.
+                </p>
+<div class="project-block"><div class="project-info">
+<div class="tag">PROJECT :: GITAMRTA</div>
+<div class="tech-chips">
+<span class="chip">JavaScript</span>
+<span class="chip">Chrome Extension</span>
+<span class="chip">Manifest V3</span>
+<span class="chip">Vedic Scriptures API</span>
+<span class="chip">Chrome Storage</span>
+</div>
+<h3>Shloka Discovery and Scripture Lookup</h3>
+<p style="max-width: 100%;">• <strong>Verse discovery:</strong> Opens with a random chapter and verse, then lets readers discover another shloka whenever they choose.</p>
+<p style="max-width: 100%;">• <strong>Scripture details:</strong> Presents the original Sanskrit and Roman transliteration, with English translation and Hindi commentary when available from the service.</p>
+<p style="max-width: 100%; margin-bottom: 0;">• <strong>Search and preferences:</strong> Supports chapter/verse lookup, copying the verse with its reference, System/Light/Dark themes, and remembering the last viewed verse on the device.</p>
+<div class="app-link-container">
+<div class="app-link-item">Website: <a class="app-link" href="https://darshseraphic.github.io/Gitamrta/" target="_blank" rel="noopener noreferrer">darshseraphic.github.io/Gitamrta</a></div>
+<div class="app-link-item">Repository: <a class="app-link" href="https://github.com/darshseraphic/Gitamrta" target="_blank" rel="noopener noreferrer">github.com/darshseraphic/Gitamrta</a></div>
+<div class="app-link-item">Readme: <a class="app-link" href="https://github.com/darshseraphic/Gitamrta#readme" target="_blank" rel="noopener noreferrer">Gitamrta documentation</a></div>
+</div>
+</div><div class="preview-frame-wrapper">
+<iframe class="preview-frame" loading="lazy" src="https://darshseraphic.github.io/Gitamrta/" title="GITAMRTA Website"></iframe>
+</div></div>
+</div>
+</section>
 <section id="philosophy">
 <div class="container">
-<h2>14. Engineering Approach</h2>
+<h2>16. Engineering Approach</h2>
 <h1>How I Build Software</h1>
 <div class="philosophy-wrapper">
 <h3 style="margin-top: 1rem;">// Offline-First</h3>
@@ -1187,24 +1257,24 @@ html {
 </section>
 <section class="section-connect" id="connect">
 <div class="container">
-<h2>15. Contact &amp; Profiles</h2>
+<h2>17. Contact &amp; Profiles</h2>
 <h1>Let's Connect</h1>
 <div class="links-wrapper">
-<a class="clean-link-row" href="https://www.linkedin.com/in/darshseraphic" target="_blank">
+<a class="clean-link-row" href="https://x.com/Darshseraphic" target="_blank" rel="noopener noreferrer">
+<span>[ X Network ]</span>
+<span class="arrow">@Darshseraphic →</span>
+</a>
+<a class="clean-link-row" href="https://www.linkedin.com/in/darshseraphic" target="_blank" rel="noopener noreferrer">
 <span>[ LinkedIn Network ]</span>
 <span class="arrow">/in/darshseraphic →</span>
 </a>
-<a class="clean-link-row" href="https://github.com/darshseraphic" target="_blank">
+<a class="clean-link-row" href="https://github.com/darshseraphic" target="_blank" rel="noopener noreferrer">
 <span>[ GitHub Repositories ]</span>
 <span class="arrow">/darshseraphic →</span>
 </a>
-<a class="clean-link-row" href="https://www.instagram.com/darshseraphic/" target="_blank">
+<a class="clean-link-row" href="https://www.instagram.com/darshseraphic/" target="_blank" rel="noopener noreferrer">
 <span>[ Instagram Network ]</span>
 <span class="arrow">@darshseraphic →</span>
-</a>
-<a class="clean-link-row" href="https://x.com/Darshseraphic" target="_blank">
-<span>[ X Network ]</span>
-<span class="arrow">@Darshseraphic →</span>
 </a>
 <a class="clean-link-row" href="https://www.threads.com/@darshseraphic" target="_blank">
 <span>[ Threads Network ]</span>
